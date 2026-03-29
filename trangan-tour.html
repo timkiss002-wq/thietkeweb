@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tràng An - Bức Tranh Thiên Nhiên Kỳ Vĩ | Du Lịch Địa Phương</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Be+Vietnam+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  .icon { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; flex-shrink: 0; }
+  .icon svg { width: 18px; height: 18px; stroke-width: 1.8; }
+  :root {
+    --cream: #F7F3EC; --ink: #1A1612; --terracotta: #C5501A;
+    --sage: #5C7A5E; --border: rgba(26,22,18,0.1); --muted: #6B5E52;
+    --terracotta-light: #E8845A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--cream); color: var(--ink);
+    line-height: 1.6; margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(247,243,236,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: 70px; display: flex; align-items: center;
+  }
+  .nav-container {
+    width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif; font-size: 22px;
+    font-weight: 700; color: var(--terracotta); text-decoration: none;
+  }
+  .logo span { color: var(--ink); }
+
+  .hotline-block { text-align: right; }
+  .hotline-label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+  .hotline-number {
+    font-size: 18px; font-weight: 700; color: var(--terracotta);
+    text-decoration: none; font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .hotline-number:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .nav-container { flex-direction: column; gap: 5px; }
+    .hotline-block { text-align: center; }
+  }
+
+  .container { max-width: 1280px; margin: 40px auto; padding: 0 2.5%; }
+
+  /* ─── TIÊU ĐỀ & ĐÁNH GIÁ ─── */
+  .tour-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 36px); margin-bottom: 10px; line-height: 1.2; }
+  .rating-row { display: flex; align-items: center; gap: 10px; color: var(--terracotta); font-weight: 600; margin-bottom: 25px; }
+  .stars { letter-spacing: 2px; }
+
+  /* ─── SLIDER ─── */
+  .slider-container {
+    width: 100%; height: 450px; border-radius: 16px;
+    overflow: hidden; position: relative; margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  .slides { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
+  .slide { min-width: 100%; height: 100%; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ─── LAYOUT GRID ─── */
+  .tour-grid {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .tour-content { flex: 2; min-width: 0; }
+  .content-card {
+    background: white; padding: 30px; border-radius: 16px;
+    border: 1px solid var(--border); margin-bottom: 30px;
+  }
+
+  /* ─── ĐIỂM NỔI BẬT ─── */
+  .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; list-style: none; padding: 0; }
+  .highlight-grid li { display: flex; gap: 10px; font-size: 14px; line-height: 1.5; }
+  .highlight-grid li::before { content: "•"; color: var(--terracotta); font-weight: bold; font-size: 20px; line-height: 1; }
+
+  /* ─── LỊCH TRÌNH ACCORDION ─── */
+  .st-program-list .item { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
+  .item-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px 5px; }
+  .day-label { background: #004494; color: white; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 4px; }
+  .meal-label { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  .item-header { padding: 5px 15px 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .item-header h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; flex: 1; line-height: 1.4; }
+  .arrow-icon { font-size: 14px; color: var(--muted); transition: transform 0.3s ease; }
+  .item-body { padding: 0 20px 20px; font-size: 14px; color: var(--ink); display: none; }
+
+  /* ─── CHÍNH SÁCH TOUR ─── */
+  .policy-section-title { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 20px 0; }
+  .policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .policy-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+  .policy-list { list-style: none; padding: 0; margin: 0; }
+  .policy-list li { font-size: 14px; margin-bottom: 10px; display: flex; gap: 10px; line-height: 1.5; }
+  .policy-list li.inc::before { content: '✓'; color: #28a745; font-weight: bold; flex-shrink: 0; }
+  .policy-list li.exc::before { content: '✕'; color: #dc3545; font-weight: bold; flex-shrink: 0; }
+  .policy-list li.dot::before { content: '•'; color: var(--terracotta); font-weight: bold; font-size: 18px; line-height: 1; flex-shrink: 0; }
+
+  .policy-box-small { background: var(--cream); border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
+
+  /* ─── BẢNG CHÍNH SÁCH TRẺ EM 2 CỘT ─── */
+  .children-policy-table { display: table; width: 100%; border-spacing: 0 10px; }
+  .cp-row { display: table-row; font-size: 14px; line-height: 1.5; }
+  .cp-dot { display: table-cell; color: var(--terracotta); font-size: 20px; font-weight: bold; vertical-align: top; padding-right: 8px; line-height: 1.2; width: 18px; }
+  .cp-label { display: table-cell; font-weight: 700; vertical-align: top; white-space: nowrap; padding-right: 16px; width: 1%; }
+  .cp-desc { display: table-cell; vertical-align: top; color: var(--ink); }
+
+  .btn-view-more {
+    background: white; border: 1px solid #ddd; padding: 6px 15px;
+    border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+    margin-top: 10px; transition: 0.2s; font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .btn-view-more:hover { background: #f0ebe3; border-color: var(--terracotta); color: var(--terracotta); }
+
+  /* ─── SIDEBAR STICKY ─── */
+  .sidebar {
+    flex: 1;
+    min-width: 280px;
+    max-width: 340px;
+    position: sticky;
+    top: 90px; /* navbar height (70px) + 20px khoảng cách */
+    align-self: flex-start;
+  }
+  .sidebar-booking-box {
+    background: white; border-radius: 16px; padding: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); border: 1px solid #eee;
+  }
+  .price-header .label { font-size: 18px; font-weight: 700; color: var(--ink); }
+  .price-header .amount { font-size: 32px; font-weight: 800; color: #be2020; margin-left: 5px; }
+  .price-header .sub-text { font-size: 13px; color: var(--muted); margin-top: 5px; display: block; }
+  .tour-specs { list-style: none; padding: 0; margin-bottom: 20px; }
+  .tour-specs li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+  .tour-specs li strong { color: #004494; }
+  .tour-destinations-text { font-weight: 700; font-size: 15px; margin-bottom: 20px; line-height: 1.5; color: var(--ink); }
+  .btn-select-date { width: 100%; padding: 16px; background: #004494; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 20px; font-family: 'Be Vietnam Pro', sans-serif; transition: 0.2s; }
+  .btn-select-date:hover { background: #003070; }
+  .commitment-box { background: #ebf3ff; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
+  .commitment-item { display: flex; gap: 12px; margin-bottom: 12px; font-size: 13px; line-height: 1.4; color: var(--ink); }
+  .commitment-item:last-child { margin-bottom: 0; }
+  .check-icon { color: #004494; display: inline-flex; align-items: center; }
+  .check-icon svg { width: 18px; height: 18px; stroke-width: 2; }
+  .contact-footer-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn-contact-outline { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 5px; border: 1px solid #ddd; background: white; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; transition: 0.2s; }
+  .btn-contact-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.55); z-index: 2000;
+    display: none; justify-content: center; align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-content-box {
+    background: white; width: 100%; max-width: 780px; max-height: 88vh;
+    border-radius: 16px; overflow-y: auto; position: relative;
+    padding: 40px 40px 36px;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+  }
+  .modal-content-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; margin: 0 0 24px 0;
+    color: var(--ink); padding-right: 30px;
+  }
+  .modal-content-box h4 {
+    font-size: 16px; font-weight: 700; margin: 20px 0 12px 0; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .modal-content-box h4:first-of-type { margin-top: 0; }
+  .close-modal {
+    position: absolute; top: 16px; right: 20px; font-size: 26px;
+    cursor: pointer; color: var(--muted); border: none; background: none;
+    line-height: 1; transition: 0.2s;
+  }
+  .close-modal:hover { color: var(--ink); }
+  .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .modal-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+  @keyframes slideUp { from {transform: translateY(24px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--ink); color: rgba(255,255,255,0.6); padding: 50px 5% 30px; margin-top: 50px; }
+  footer .logo { color: var(--terracotta-light) !important; font-size: 24px; }
+  footer .logo span { color: rgba(255,255,255,0.7); }
+  .footer-bottom-line { font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; width: 100%; text-align: center; margin-top: 30px; }
+
+  /* ─── ĐÁNH GIÁ ─── */
+  .review-summary-box {
+    display: flex; align-items: center; gap: 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .review-score-left {
+    flex: 0 0 220px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 28px 24px; text-align: center;
+  }
+  .review-score-badge {
+    background: #004494; color: white; font-size: 32px; font-weight: 800;
+    border-radius: 10px; padding: 10px 22px; margin-bottom: 12px;
+    font-family: 'Be Vietnam Pro', sans-serif; display: inline-block;
+  }
+  .review-score-badge span { font-size: 18px; font-weight: 400; opacity: 0.85; }
+  .review-score-label { color: #004494; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .review-score-sub { font-size: 13px; color: var(--muted); }
+  .review-score-sub strong { color: #004494; }
+  .review-divider { width: 1px; align-self: stretch; background: var(--border); }
+  .review-bars-right { flex: 1; padding: 20px 28px; display: flex; flex-direction: column; gap: 10px; }
+  .review-bar-row { display: flex; align-items: center; gap: 12px; }
+  .rb-label { font-size: 13px; color: #004494; font-weight: 600; width: 80px; text-align: right; flex-shrink: 0; }
+  .rb-track { flex: 1; height: 8px; background: #e8e8e8; border-radius: 4px; overflow: hidden; }
+  .rb-fill { height: 100%; background: #004494; border-radius: 4px; transition: width 0.5s ease; }
+  .rb-count { font-size: 13px; color: var(--ink); font-weight: 600; width: 20px; text-align: right; flex-shrink: 0; }
+
+  .review-pagination-text { font-size: 13px; color: var(--muted); margin: 0 0 16px 0; }
+
+  /* Review cards */
+  .review-card { border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 14px; }
+  .review-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .review-card-name { font-weight: 700; font-size: 14px; }
+  .review-card-date { font-size: 12px; color: var(--muted); }
+  .review-card-stars { color: #f5a623; font-size: 15px; letter-spacing: 1px; margin-bottom: 4px; }
+  .review-card-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .review-card-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Form */
+  .review-form-section { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 8px; }
+  .review-star-select { display: flex; gap: 6px; margin-bottom: 16px; flex-direction: row-reverse; justify-content: flex-end; }
+  .star-opt { font-size: 28px; color: #ddd; cursor: pointer; transition: color 0.15s; line-height: 1; }
+  .star-opt.active, .star-opt:hover, .star-opt:hover ~ .star-opt { color: #f5a623; }
+  .review-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .review-input {
+    width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 14px; font-family: 'Be Vietnam Pro', sans-serif; color: var(--ink);
+    background: white; transition: border-color 0.2s; box-sizing: border-box;
+  }
+  .review-input:focus { outline: none; border-color: #004494; }
+  .review-textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 14px; font-family: 'Be Vietnam Pro', sans-serif; color: var(--ink);
+    min-height: 100px; resize: vertical; margin-bottom: 14px;
+    background: white; transition: border-color 0.2s; box-sizing: border-box;
+  }
+  .review-textarea:focus { outline: none; border-color: #004494; }
+  .btn-submit-review {
+    background: #004494; color: white; border: none; border-radius: 8px;
+    padding: 12px 28px; font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: 'Be Vietnam Pro', sans-serif; transition: 0.2s;
+  }
+  .btn-submit-review:hover { background: #003070; }
+
+  @media (max-width: 900px) {
+    .tour-grid { flex-direction: column; }
+    .sidebar { position: static; width: 100%; max-width: 100%; min-width: unset; margin-top: 0; }
+    .highlight-grid { grid-template-columns: 1fr; }
+    .policy-grid { grid-template-columns: 1fr; }
+    .modal-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .modal-content-box { padding: 28px 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+    <div class="hotline-block">
+      <span class="hotline-label">Hotline tư vấn</span>
+      <a href="tel:19001986" class="hotline-number">1900.1986</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="tour-title">Tràng An: Bức Tranh Thiên Nhiên Kỳ Vĩ Giữa Lòng Ninh Bình</h1>
+  
+  <div class="rating-row">
+    <span class="stars">0★</span>
+    <span>(Chưa có đánh giá)</span>
+  </div>
+  
+  <div class="slider-container">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="https://trangandanhthang.vn/wp-content/uploads/2025/06/trang-an-ninh-binh-1-1.jpg" alt="Tràng An"></div>
+      <div class="slide"><img src="https://www.homepaylater.vn/static/460a3768a895e717f1ecf25ced91d7aa/36ac8/3_chua_bai_dinh_noi_bat_giua_canh_quan_nui_non_hung_vi_trang_an_f929dbf2c1.webp" alt="Tràng An 2"></div>
+      <div class="slide"><img src="https://thungnham.com/wp-content/uploads/2024/03/khu-du-lich-trang-an-2.webp" alt="Tràng An 3"></div>
+    </div>
+  </div>
+
+  <div class="tour-grid">
+    <!-- ─── CỘT TRÁI: NỘI DUNG ─── -->
+    <div class="tour-content">
+
+      <!-- ĐIỂM NỔI BẬT -->
+      <div class="content-card">
+        <h3 style="font-family: 'Playfair Display'; font-size: 24px; margin-top:0; margin-bottom: 6px;">Điểm Nổi Bật</h3>
+        <p style="font-size: 14px; color: var(--muted); margin-top: 0;">Hành trình khám phá Di sản Thế giới UNESCO – kỳ quan thiên nhiên độc đáo bậc nhất Việt Nam:</p>
+        <ul class="highlight-grid">
+          <li>Ngồi thuyền len lỏi qua hàng chục hang động kỳ bí, ngắm nhũ đá triệu năm tuổi.</li>
+          <li>Chiêm bái đền Trần, đền Tin, đền Nội Lâm linh thiêng ẩn mình giữa núi non.</li>
+          <li>Phóng tầm mắt bao quát quần thể non nước hùng vĩ – "Hạ Long trên cạn".</li>
+          <li>Thưởng thức đặc sản Ninh Bình: cơm cháy, dê núi, thịt bê thui và rượu Kim Sơn.</li>
+          <li>Tham quan Bích Động – "Nam thiên đệ nhị động" huyền bí ba tầng hang lồng nhau.</li>
+          <li>Check-in cầu đá cổ, ruộng lúa mùa vàng thơ mộng quanh thung lũng Tràng An.</li>
+          <li>Khám phá hệ sinh thái đất ngập nước đặc hữu được UNESCO công nhận.</li>
+          <li>Chụp ảnh với đàn dê leo núi và khỉ hoang dã tự nhiên ven sông.</li>
+        </ul>
+      </div>
+
+      <!-- LỊCH TRÌNH --->
+      <div class="content-card">
+        <div class="st-program-list">
+          <div class="item">
+            <div class="item-top"><span class="day-label">Sáng</span><span class="meal-label">🍽️ Ăn Sáng</span></div>
+            <div class="item-header"><h3>Hà Nội – Ninh Bình – Tràng An</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>05:30 – 06:00:</strong> Xe đón quý khách tại các điểm tập kết ở Hà Nội, khởi hành đi Ninh Bình.</p>
+              <p><strong>08:00 – 08:30:</strong> Đến nơi, nhận thuyền tại bến Tràng An. Ăn sáng nhẹ và nghe hướng dẫn viên giới thiệu tổng quan về quần thể Di sản.</p>
+              <p><strong>08:30 – 11:30:</strong> Bắt đầu hành trình <strong>chèo thuyền khám phá Tràng An</strong> – len lỏi qua 48 hang động kỳ bí, chiêm ngưỡng vách đá dựng đứng soi bóng xuống dòng sông. Tham quan <strong>đền Trần, đền Tin, đền Nội Lâm</strong> – những công trình tín ngưỡng cổ kính nằm giữa núi rừng linh thiêng.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-top"><span class="day-label">Trưa</span><span class="meal-label">🍽️ Ăn Trưa</span></div>
+            <div class="item-header"><h3>Cơm Cháy Ninh Bình & Bích Động</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>11:30 – 13:00:</strong> Dùng bữa trưa với đặc sản <strong>cơm cháy, thịt dê núi</strong> tại nhà hàng địa phương.</p>
+              <p><strong>13:00 – 15:00:</strong> Tham quan <strong>Bích Động</strong> – "Nam thiên đệ nhị động" với hệ thống 3 tầng hang độc đáo: Hạ Động, Trung Động và Thượng Động, khắc tên danh lam từ thế kỷ XVIII. Leo bộ lên Thượng Động ngắm toàn cảnh đồng bằng Ninh Bình.</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-top"><span class="day-label">Chiều</span><span class="meal-label">🚌 Về Hà Nội</span></div>
+            <div class="item-header"><h3>Mua Sắm Đặc Sản & Trở Về</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>15:00 – 15:30:</strong> Dạo phố Hoa Lư, ghé mua đặc sản mang về: <strong>rượu Kim Sơn, cơm cháy đóng gói, kẹo lạc, mắm tép</strong>.</p>
+              <p><strong>15:30:</strong> Xe khởi hành trở lại Hà Nội.</p>
+              <p><strong>18:00 – 18:30:</strong> Về tới Hà Nội, kết thúc hành trình. Hẹn gặp lại quý khách trong những chuyến đi tiếp theo!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHÍNH SÁCH TOUR -->
+      <div class="content-card">
+        <h3 class="policy-section-title">Chính Sách Tour</h3>
+        <div class="policy-grid">
+          <div class="policy-item">
+            <h4><span class="icon" style="color:#28a745"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 9"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span> Giá Tour Bao Gồm</h4>
+            <ul class="policy-list">
+              <li class="inc">Xe du lịch đời mới, điều hòa khứ hồi Hà Nội – Ninh Bình.</li>
+              <li class="inc">Vé thuyền tham quan Tràng An (tuyến 3 hang).</li>
+              <li class="inc">Vé tham quan Bích Động.</li>
+              <li class="inc">01 bữa sáng + 01 bữa trưa đặc sản theo chương trình.</li>
+              <li class="inc">Bảo hiểm du lịch mức bồi thường tối đa 30.000.000đ.</li>
+            </ul>
+          </div>
+          <div class="policy-item">
+            <h4><span class="icon" style="color:#dc3545"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg></span> Giá Tour Không Bao Gồm</h4>
+            <ul class="policy-list">
+              <li class="exc">Chi phí cá nhân: đồ uống ngoài bữa ăn, mua sắm đặc sản.</li>
+              <li class="exc">Dịch vụ chụp ảnh chuyên nghiệp tại điểm tham quan.</li>
+              <li class="exc">Thuế VAT (nếu lấy hóa đơn).</li>
+              <li class="exc">Tiền Tip cho tài xế và HDV (không bắt buộc).</li>
+            </ul>
+          </div>
+        </div>
+        <button class="btn-view-more" onclick="openModal('policy-full')">Xem thêm</button>
+      </div>
+
+      <!-- CHÍNH SÁCH TRẺ EM -->
+      <div class="content-card">
+        <h3 class="policy-section-title">Chính Sách Dành Cho Trẻ Em</h3>
+        <div class="children-policy-table" style="margin-bottom: 25px;">
+          <div class="cp-row">
+            <span class="cp-dot">•</span>
+            <span class="cp-label">Em bé dưới 5 tuổi:</span>
+            <span class="cp-desc">Miễn phí tour, bố mẹ tự lo ăn uống, ngủ chung giường.</span>
+          </div>
+          <div class="cp-row">
+            <span class="cp-dot">•</span>
+            <span class="cp-label">Trẻ em từ 5 - 9 tuổi:</span>
+            <span class="cp-desc">Tính 75% giá tour, có suất ăn riêng, ngủ chung với bố mẹ.</span>
+          </div>
+          <div class="cp-row">
+            <span class="cp-dot">•</span>
+            <span class="cp-label">Trẻ em từ 10 tuổi trở lên:</span>
+            <span class="cp-desc">Tính 100% giá tour như người lớn.</span>
+          </div>
+        </div>
+        
+        <div class="policy-grid">
+          <div class="policy-box-small">
+            <h4 style="margin-top:0; font-size: 15px;"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg></span> Quy Định Chung</h4>
+            <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px 0;">Thanh toán ít nhất 50% tiền cọc khi đặt tour. Hoàn tất 100% giá trị tour trước 5 ngày khởi hành.</p>
+            <button class="btn-view-more" onclick="openModal('general-rules')">Xem thêm</button>
+          </div>
+          <div class="policy-box-small">
+            <h4 style="margin-top:0; font-size: 15px;"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg></span> Chính Sách Hủy</h4>
+            <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px 0;">Công ty sẽ căn cứ vào từng trường hợp và thời điểm hủy tour để giải quyết thỏa đáng cho khách hàng.</p>
+            <button class="btn-view-more" onclick="openModal('cancel-policy')">Xem thêm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ĐÁNH GIÁ -->
+      <div class="content-card" id="review-section">
+        <h3 class="policy-section-title">Đánh Giá</h3>
+
+        <div class="review-summary-box">
+          <div class="review-score-left">
+            <div class="review-score-badge">0<span>/5</span></div>
+            <div class="review-score-label">Chưa có đánh giá</div>
+            <div class="review-score-sub">Dựa trên <strong>0 đánh giá</strong></div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-bars-right">
+            <div class="review-bar-row"><span class="rb-label">Tuyệt vời</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Rất tốt</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Bình thường</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Không tốt</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Kinh khủng</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+          </div>
+        </div>
+
+        <p class="review-pagination-text" id="review-pagination-text">Đang hiển thị 1 - 0 of 0 Tổng cộng</p>
+        <div id="review-list"></div>
+
+        <div class="review-form-section">
+          <h4 style="font-size: 16px; font-weight: 700; margin: 0 0 16px 0;">Viết đánh giá</h4>
+          <div class="review-star-select" id="star-select">
+            <span class="star-opt" data-val="1">★</span>
+            <span class="star-opt" data-val="2">★</span>
+            <span class="star-opt" data-val="3">★</span>
+            <span class="star-opt" data-val="4">★</span>
+            <span class="star-opt" data-val="5">★</span>
+          </div>
+          <div class="review-form-row">
+            <input type="text" id="review-name" placeholder="Họ và tên của bạn" class="review-input" />
+            <input type="text" id="review-title" placeholder="Tiêu đề đánh giá" class="review-input" />
+          </div>
+          <textarea id="review-body" placeholder="Chia sẻ trải nghiệm của bạn về chuyến đi..." class="review-textarea"></textarea>
+          <button class="btn-submit-review" onclick="submitReview()">Gửi đánh giá</button>
+        </div>
+      </div>
+
+    </div><!-- end .tour-content -->
+
+    <!-- ─── SIDEBAR STICKY ─── -->
+    <aside class="sidebar">
+      <div class="sidebar-booking-box">
+        <div class="price-header">
+          <span class="label">Giá từ</span>
+          <span class="amount">690.000đ</span>
+          <span class="sub-text">(Giá tour trọn gói khởi hành từ Hà Nội)</span>
+        </div>
+
+        <ul class="tour-specs">
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span> Mã Tour : TA-2024</li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span> Thời gian : 1 Ngày</li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span> Phương tiện : Xe du lịch</li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Khởi hành : <strong>Hà Nội</strong></li>
+        </ul>
+
+        <div class="tour-destinations-text">Tràng An | Bích Động | Đền Trần | Phố Cổ Hoa Lư</div>
+
+        <button class="btn-select-date"><span class="icon" style="margin-right:8px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>Chọn Ngày Khởi Hành</button>
+
+        <div class="commitment-box">
+          <div class="commitment-item">
+            <span class="icon check-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+            <div><strong>Cam kết vững vàng</strong> - Sát cánh suốt mọi hành trình</div>
+          </div>
+          <div class="commitment-item">
+            <span class="icon check-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+            <div><strong>Hỗ trợ huỷ chỗ</strong> - Tối đa 24h trước khi khởi hành</div>
+          </div>
+        </div>
+
+        <div class="contact-footer-btns">
+          <a href="tel:0812213137" class="btn-contact-outline"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span> Gọi điều hành</a>
+          <a href="#" class="btn-contact-outline"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> Tư vấn ngay</a>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- end .tour-grid -->
+</div><!-- end .container -->
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; padding: 0;">
+    <div style="margin-bottom: 20px; width: 100%;">
+      <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+      <p style="font-size: 15px; margin-top: 10px; color: rgba(255,255,255,0.8);">Khám phá Việt Nam theo cách của người bản địa.</p>
+    </div>
+    <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+  </div>
+</footer>
+
+
+<!-- ─── MODAL OVERLAY ─── -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal-content-box">
+    <button class="close-modal" onclick="closeModal()">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+
+<script>
+  // ─── SLIDER TỰ ĐỘNG ───
+  let currentSlide = 0;
+  const slidesContainer = document.getElementById('slides');
+  const totalSlides = document.querySelectorAll('.slide').length;
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+  setInterval(nextSlide, 4000);
+
+  // ─── ACCORDION LỊCH TRÌNH ───
+  document.querySelectorAll('.item-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow-icon');
+      const isOpen = body.style.display === 'block';
+
+      document.querySelectorAll('.item-body').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.arrow-icon').forEach(a => a.style.transform = 'rotate(0deg)');
+
+      if (!isOpen) {
+        body.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+  // Mở mặc định ngày 1
+  const firstBody = document.querySelector('.item-body');
+  if (firstBody) {
+    firstBody.style.display = 'block';
+    document.querySelector('.arrow-icon').style.transform = 'rotate(180deg)';
+  }
+
+  // ─── NỘI DUNG MODAL ───
+  const svgIcon = (name) => {
+    const icons = {
+      'check-square': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 9"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+      'x-square': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>`,
+      'alert-circle': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+      'credit-card': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+      'building': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`,
+      'clipboard-list': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>`,
+      'clock': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+      'refresh-ccw': `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>`,
+    };
+    return icons[name] || '';
+  };
+
+  const modalContents = {
+    'policy-full': `
+      <h2>Chính Sách Tour Đầy Đủ</h2>
+      <div class="modal-grid">
+        <div>
+          <h4 style="color:#28a745">${svgIcon('check-square')} &nbsp;Giá Tour Bao Gồm</h4>
+          <ul class="policy-list">
+            <li class="inc">Xe du lịch đời mới, điều hòa khứ hồi Hà Nội – Ninh Bình.</li>
+            <li class="inc">Vé thuyền tham quan Tràng An (tuyến 3 hang).</li>
+            <li class="inc">Vé tham quan Bích Động.</li>
+            <li class="inc">01 bữa sáng + 01 bữa trưa đặc sản theo chương trình.</li>
+            <li class="inc">Hướng dẫn viên kinh nghiệm suốt hành trình.</li>
+            <li class="inc">Nước uống trên xe trong suốt chuyến đi.</li>
+            <li class="inc">Bảo hiểm du lịch mức bồi thường tối đa 30.000.000đ.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#dc3545">${svgIcon('x-square')} &nbsp;Giá Tour Không Bao Gồm</h4>
+          <ul class="policy-list">
+            <li class="exc">Chi phí cá nhân: đồ uống ngoài bữa ăn, mua sắm đặc sản.</li>
+            <li class="exc">Dịch vụ chụp ảnh chuyên nghiệp tại điểm tham quan.</li>
+            <li class="exc">Thuế VAT (nếu lấy hóa đơn tài chính).</li>
+            <li class="exc">Tiền Tip cho tài xế và hướng dẫn viên (không bắt buộc).</li>
+            <li class="exc">Chi phí phát sinh do thiên tai, thời tiết bất ngờ.</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="modal-divider">
+      <h4>${svgIcon('alert-circle')} &nbsp;Lưu Ý Quan Trọng</h4>
+      <ul class="policy-list">
+        <li class="dot">Quý khách vui lòng mang theo CMND/CCCD bản gốc trong suốt hành trình.</li>
+        <li class="dot">Nên mặc trang phục gọn nhẹ, giày dép bằng phẳng khi leo hang động.</li>
+        <li class="dot">Giá tour áp dụng từ 01/01/2026 – 31/12/2026, không áp dụng ngày lễ Tết.</li>
+        <li class="dot">Công ty có quyền thay đổi lịch trình phù hợp với điều kiện thực tế nhưng đảm bảo chất lượng.</li>
+      </ul>
+    `,
+
+    'general-rules': `
+      <h2>Quy Định Thanh Toán & Đặt Tour</h2>
+      <h4>${svgIcon('credit-card')} &nbsp;Hình Thức Thanh Toán</h4>
+      <ul class="policy-list">
+        <li class="dot">Thanh toán cọc tối thiểu <strong>50%</strong> giá trị tour trong vòng 24h sau khi đặt chỗ.</li>
+        <li class="dot">Hoàn tất <strong>100%</strong> giá trị tour trước ngày khởi hành ít nhất <strong>05 ngày</strong>.</li>
+        <li class="dot">Phương thức thanh toán: Tiền mặt tại văn phòng, chuyển khoản ngân hàng, hoặc quẹt thẻ.</li>
+      </ul>
+      <hr class="modal-divider">
+      <h4>${svgIcon('building')} &nbsp;Thông Tin Chuyển Khoản</h4>
+      <ul class="policy-list">
+        <li class="dot">Tên tài khoản: <strong>CÔNG TY DU LỊCH ĐỊA PHƯƠNG</strong></li>
+        <li class="dot">Số tài khoản: <strong>0123 4567 89</strong> – Ngân hàng Vietcombank</li>
+        <li class="dot">Nội dung CK: <em>Họ tên + Mã tour + Ngày khởi hành</em></li>
+      </ul>
+      <hr class="modal-divider">
+      <h4>${svgIcon('clipboard-list')} &nbsp;Điều Kiện Tham Gia Tour</h4>
+      <ul class="policy-list">
+        <li class="dot">Khách hàng cần đảm bảo sức khỏe tốt để tham gia các hoạt động leo núi, trekking.</li>
+        <li class="dot">Phụ nữ mang thai vui lòng thông báo trước để được tư vấn lịch trình phù hợp.</li>
+        <li class="dot">Khách có bệnh nền cần mang đầy đủ thuốc theo chỉ định của bác sĩ.</li>
+      </ul>
+    `,
+
+    'cancel-policy': `
+      <h2>Chính Sách Hủy Tour</h2>
+      <h4>${svgIcon('clock')} &nbsp;Phí Hủy Tour Theo Thời Gian</h4>
+      <div class="children-policy-table">
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Trước 15 ngày:</span><span class="cp-desc">Hoàn 90% (giữ lại 10% phí xử lý hồ sơ).</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Từ 10 – 14 ngày:</span><span class="cp-desc">Hoàn 70% tổng giá trị tour.</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Từ 07 – 09 ngày:</span><span class="cp-desc">Hoàn 50% tổng giá trị tour.</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Từ 05 – 06 ngày:</span><span class="cp-desc">Hoàn 30% tổng giá trị tour.</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Dưới 05 ngày:</span><span class="cp-desc">Không hoàn tiền (kể cả trường hợp không báo hủy).</span></div>
+      </div>
+      <hr class="modal-divider">
+      <h4>${svgIcon('refresh-ccw')} &nbsp;Trường Hợp Đặc Biệt</h4>
+      <div class="children-policy-table">
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Thiên tai, dịch bệnh:</span><span class="cp-desc">Được xác nhận bởi cơ quan nhà nước — hoàn 100% hoặc đổi lịch không phát sinh phí.</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Đổi ngày khởi hành:</span><span class="cp-desc">Miễn phí tối đa 1 lần nếu thông báo trước 7 ngày.</span></div>
+        <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Vé cá nhân:</span><span class="cp-desc">Công ty không chịu trách nhiệm hoàn tiền vé máy bay/tàu xe khách tự đặt.</span></div>
+      </div>
+      <hr class="modal-divider">
+      <p style="font-size: 13px; color: var(--muted); font-style: italic;">Mọi trường hợp tranh chấp sẽ được giải quyết theo quy định của Pháp luật Việt Nam và điều khoản trong Hợp đồng du lịch đã ký kết.</p>
+    `
+  };
+
+  // ─── MODAL FUNCTIONS ───
+  function openModal(key) {
+    const overlay = document.getElementById('modal');
+    const content = document.getElementById('modal-content');
+    content.innerHTML = modalContents[key] || '<p>Nội dung đang cập nhật...</p>';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  // ─── ĐÁNH GIÁ ───
+  let reviews = [];
+  let selectedStar = 0;
+
+  // Chọn sao
+  document.querySelectorAll('.star-opt').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedStar = parseInt(star.dataset.val);
+      document.querySelectorAll('.star-opt').forEach(s => {
+        s.classList.toggle('active', parseInt(s.dataset.val) <= selectedStar);
+      });
+    });
+    star.addEventListener('mouseenter', () => {
+      const val = parseInt(star.dataset.val);
+      document.querySelectorAll('.star-opt').forEach(s => {
+        s.style.color = parseInt(s.dataset.val) <= val ? '#f5a623' : '#ddd';
+      });
+    });
+    star.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.star-opt').forEach(s => {
+        s.style.color = parseInt(s.dataset.val) <= selectedStar ? '#f5a623' : '#ddd';
+      });
+    });
+  });
+
+  function submitReview() {
+    const name = document.getElementById('review-name').value.trim();
+    const title = document.getElementById('review-title').value.trim();
+    const body = document.getElementById('review-body').value.trim();
+    if (!name || !title || !body || selectedStar === 0) {
+      alert('Vui lòng điền đầy đủ thông tin và chọn số sao!');
+      return;
+    }
+    const now = new Date();
+    reviews.unshift({ name, title, body, star: selectedStar, date: now.toLocaleDateString('vi-VN') });
+    // Reset form
+    document.getElementById('review-name').value = '';
+    document.getElementById('review-title').value = '';
+    document.getElementById('review-body').value = '';
+    selectedStar = 0;
+    document.querySelectorAll('.star-opt').forEach(s => s.classList.remove('active'));
+    renderReviews();
+  }
+
+  function renderReviews() {
+    const list = document.getElementById('review-list');
+    const total = reviews.length;
+    document.getElementById('review-pagination-text').textContent =
+      total === 0 ? 'Đang hiển thị 0 – 0 của 0 đánh giá' : `Đang hiển thị 1 – ${total} của ${total} đánh giá`;
+
+    // Tính điểm trung bình
+    const avg = total === 0 ? 0 : (reviews.reduce((s, r) => s + r.star, 0) / total).toFixed(1);
+    document.querySelector('.review-score-badge').innerHTML = `${avg}<span>/5</span>`;
+    document.querySelector('.review-score-label').textContent = total === 0 ? 'Chưa có đánh giá' : 'Điểm trung bình';
+    document.querySelector('.review-score-sub').innerHTML = `Dựa trên <strong>${total} đánh giá</strong>`;
+
+    // Cập nhật thanh bar
+    const labels = [5, 4, 3, 2, 1];
+    const rows = document.querySelectorAll('.review-bar-row');
+    rows.forEach((row, i) => {
+      const starVal = labels[i];
+      const count = reviews.filter(r => r.star === starVal).length;
+      const pct = total === 0 ? 0 : Math.round((count / total) * 100);
+      row.querySelector('.rb-fill').style.width = pct + '%';
+      row.querySelector('.rb-count').textContent = count;
+    });
+
+    // Render danh sách
+    list.innerHTML = reviews.map(r => `
+      <div class="review-card">
+        <div class="review-card-header">
+          <span class="review-card-name">${r.name}</span>
+          <span class="review-card-date">${r.date}</span>
+        </div>
+        <div class="review-card-stars">${'★'.repeat(r.star)}${'☆'.repeat(5 - r.star)}</div>
+        <div class="review-card-title">${r.title}</div>
+        <div class="review-card-body">${r.body}</div>
+      </div>
+    `).join('');
+  }
+
+  renderReviews();
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
