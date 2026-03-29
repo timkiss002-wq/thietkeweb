@@ -31,7 +31,8 @@
 
   /* ─── NAVBAR ─── */
   nav {
-    position: sticky; top: 0; z-index: 100;
+    position: sticky; /* cố định thanh nav khi cuộn */
+    top: 0; z-index: 100;
     background: rgba(247,243,236,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -91,10 +92,17 @@
     display: block; width: 22px; height: 2px;
     background: var(--ink); border-radius: 2px;
     transition: all .3s;
+
+/*Tạo hiệu ứng menu mobile chuyên nghiệp
+Khi bấm:
+3 gạch → dấu X*/
   }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/*Tạo hiệu ứng menu mobile chuyên nghiệp
+Khi bấm:
+3 gạch → dấu X*/
   .mobile-menu {
     display: none; position: fixed;
     top: 60px; left: 0; right: 0;
@@ -116,7 +124,24 @@
     background: linear-gradient(165deg, #2D1F14 0%, #3D2A1A 40%, #1A2D1C 100%);
     padding: 80px 5% 72px;
     position: relative; overflow: hidden;
-  }
+  } /*position: relative (rất hay bị hỏi)
+position: relative;
+
+👉 Mục đích KHÔNG phải để di chuyển element
+
+👉 Mà để:
+
+Làm mốc (reference) cho các phần tử con dùng position: absolute
+
+Ví dụ:
+
+.hero::before {
+  position: absolute;
+}
+
+👉 Nếu không có relative:
+→ phần tử con sẽ căn theo toàn trang, không phải .hero */
+
   .hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -714,7 +739,13 @@
     <span>Made with ♥ in Việt Nam</span>
   </div>
 </footer>
-
+function goToDetail(id, name) {
+  if (id === 7) {
+    window.location.href = 'dong-van.html';
+  } else {
+    alert('Xem chi tiết: ' + name);
+  }
+}
 <script>
   // ─── DATA ───
   const destinations = [
@@ -749,7 +780,7 @@
       grid.style.display = 'grid';
       noRes.style.display = 'none';
       grid.innerHTML = filtered.map(d => `
-        <div class="dest-card" onclick="alert('Xem chi tiết: ${d.name}')">
+        <div class="dest-card" onclick="goToDetail(${d.id}, '${d.name}')">
           <div class="card-img" style="background:${d.bg}">
             <span style="z-index:1">${d.emoji}</span>
             <div class="card-region">${d.region}</div>
@@ -823,6 +854,14 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   renderCards();
+  function goToDetail(id, name) {
+  // Chỉ Đồng Văn có trang riêng, còn lại vẫn alert tạm
+  if (id == 7) {
+    window.location.href = 'dong-van.html';
+  } else {
+    alert('Xem chi tiết: ' + name);
+  }
+}
 </script>
 </body>
 </html>
