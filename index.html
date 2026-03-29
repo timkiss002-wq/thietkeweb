@@ -858,7 +858,12 @@ function goToDetail(id, name) {
   // Chỉ Đồng Văn có trang riêng, còn lại vẫn alert tạm
   if (id == 7) {
     window.location.href = 'dong-van.html';
-  } else {
+  }
+  else if (id == 8) { 
+    // Giả sử id của Mũi Né là 8
+    window.location.href = 'mui-ne.html';
+  }
+   else {
     alert('Xem chi tiết: ' + name);
   }
 }
