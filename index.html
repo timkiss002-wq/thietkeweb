@@ -740,11 +740,10 @@ Ví dụ:
   </div>
 </footer>
 function goToDetail(id, name) {
-  if (id === 7) {
-    window.location.href = 'dong-van.html';
-  } else {
-    alert('Xem chi tiết: ' + name);
-  }
+  if (id === 7) window.location.href = 'dong-van.html';
+  else if (id === 6) window.location.href = 'trangan-tour.html';
+  else if (id === 5) window.location.href = 'sapa-tour.html';
+  else alert('Xem chi tiết: ' + name);
 }
 <script>
   // ─── DATA ───
