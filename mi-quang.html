@@ -162,9 +162,9 @@
 
   <div class="slider-container">
     <div class="slides" id="slides">
-      <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mi_Quang.jpg/1200px-Mi_Quang.jpg" alt="Mì Quảng"></div>
-      <div class="slide"><img src="https://cdn.tgdd.vn/Files/2021/09/13/1382280/cach-nau-mi-quang-ga-thom-ngon-chuan-vi-mien-trung-202109131417064130.jpg" alt="Mì Quảng 2"></div>
-      <div class="slide"><img src="https://media.cooky.vn/recipe/g1/3613/s800x500-recipe-step-3613-63773953246.jpg" alt="Mì Quảng 3"></div>
+      <div class="slide"><img src="https://helenrecipes.com/wp-content/uploads/2021/05/Screenshot-2021-05-31-142423.png" alt="Mì Quảng"></div>
+      <div class="slide"><img src="https://vcdn1-dulich.vnecdn.net/2025/07/18/a29b88804c00fa5ea311-175279580-9348-7160-1752795960.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=oNFBTx03h3kmaFmP4lvGRg" alt="Mì Quảng 2"></div>
+      <div class="slide"><img src="https://media.vietnamplus.vn/images/c14f6479e83e315b4cf3a2906cc6a51e9b4c1fb984396963cbe098b65cc5303263837f2b5cb6a232540f7977eb2a24fc126b0fd6cdcd6bf16d765be47465afacfac3c8bbce0d98bc3914f5dc6cbea960/1608myquang-8208.jpg.webp" alt="Mì Quảng 3"></div>
     </div>
   </div>
 
@@ -221,7 +221,7 @@
       </div>
 
       <div class="content-card">
-        <h3 class="policy-section-title">Giá Trị Dinh Dưỡng & Văn Hóa</h3>
+        <h3 class="policy-section-title">Giá Trị Dinh Dưỡng - Văn Hóa</h3>
         <div class="policy-grid">
           <div class="policy-item">
             <h4><span class="icon" style="color:var(--sage)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Dinh Dưỡng (1 tô)</h4>
@@ -245,7 +245,7 @@
       </div>
 
       <div class="content-card">
-        <h3 class="policy-section-title">Mẹo & Lưu Ý Khi Thưởng Thức</h3>
+        <h3 class="policy-section-title">Mẹo - Lưu Ý Khi Thưởng Thức</h3>
         <div class="children-policy-table" style="margin-bottom:25px;">
           <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Nước dùng ít:</span><span class="cp-desc">Mì Quảng chỉ chan xâm xấp, không phải chan nhiều nước như phở hay bún.</span></div>
           <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Bánh tráng:</span><span class="cp-desc">Bẻ bánh tráng nướng bỏ vào tô — tạo độ giòn và hương thơm đặc biệt.</span></div>
@@ -338,10 +338,22 @@
 
 <footer>
   <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
-  <div class="footer-bottom-line">© 2025 Du Lịch Địa Phương. All rights reserved. | Made with ♥ in Việt Nam</div>
+  <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
 </footer>
 
 <script>
+  let currentSlide = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = document.querySelectorAll('.slide').length;
+
+  setInterval(() => {
+    currentSlide++;
+    if (currentSlide >= totalSlides) {
+      currentSlide = 0;
+    }
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }, 3000); // 3 giây chuyển ảnh
+
   function toggleItem(header) {
     const body = header.nextElementSibling;
     const arrow = header.querySelector('.arrow-icon');
