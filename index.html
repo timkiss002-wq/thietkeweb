@@ -260,6 +260,12 @@ Ví dụ:
     font-size: 48px;
     position: relative; overflow: hidden;
   }
+  .card-img img {  
+  width: 100%;  
+  height: 100%;  
+  object-fit: cover;  
+  display: block;  
+}
   .card-img::after {
     content: '';
     position: absolute; inset: 0;
@@ -314,6 +320,12 @@ Ví dụ:
     display: flex; align-items: center; justify-content: center;
     background: var(--sand-light);
   }
+  .food-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
   .food-hero-body { padding: 20px; flex: 1; }
   .food-region {
     font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
@@ -350,6 +362,12 @@ Ví dụ:
     display: flex; align-items: center; justify-content: center;
     font-size: 40px;
   }
+  .food-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
   .food-card-body { padding: 10px 12px; }
   .food-card-region { font-size: 11px; color: var(--terracotta); font-weight: 500; margin-bottom: 2px; }
   .food-card-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; margin-bottom: 2px; }
@@ -500,7 +518,7 @@ Ví dụ:
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-tag">Khám phá Việt Nam</div>
-    <h1>Khám phá <em>địa điểm</em><br>& ẩm thực địa phương</h1>
+    <h1>Khám phá <em>địa điểm</em><br>và ẩm thực địa phương</h1>
     <p>Tìm kiếm, trải nghiệm và chia sẻ những điều tuyệt vời trên khắp Việt Nam</p>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Tìm địa điểm, món ăn, vùng miền..." autocomplete="off">
@@ -548,7 +566,7 @@ Ví dụ:
   </div>
   <div class="food-featured fade-in" style="margin-top:24px">
  <div class="food-hero" onclick="window.location.href='bun-cha.html'">
-      <div class="food-hero-img">🍜</div>
+      <div class="food-hero-img"><img src="https://cooponline.vn/tin-tuc/wp-content/uploads/2025/10/hoc-cach-lam-bun-cha-mien-bac-chuan-ha-noi-tai-nha.png"></div>
       <div class="food-hero-body">
         <div class="food-region">Miền Bắc · Hà Nội</div>
         <div class="food-name">Bún chả Hà Nội</div>
@@ -559,19 +577,21 @@ Ví dụ:
       </div>
     </div>
     <div class="food-hero" onclick="window.location.href='mi-quang.html'">
-      <div class="food-hero-img" style="background:#fdf0e6">🍝</div>
+      <div class="food-hero-img" style="background:#fdf0e6"><img src="https://cooponline.vn/tin-tuc/wp-content/uploads/2025/10/mi-quang-mon-dac-san-dam-da-thom-lung-xu-quang.png"></div>
       <div class="food-hero-body">
         <div class="food-region">Miền Trung · Quảng Nam</div>
         <div class="food-name">Mì Quảng</div>
         <div class="food-desc">Sợi mì vàng thắm, nước nhưn đậm vị, nhân tôm thịt thơm bùi, ăn kèm rau sống và bánh tráng giòn tan.</div>
         <span class="food-chip">Nguyên liệu & cách làm</span>
-        <span class="food-chip">Biến tấu vùng miền</zspan>
+        <span class="food-chip">Biến tấu vùng miền</span>
       </div>
     </div>
   </div>
   <div class="food-list fade-in">
     <div class="food-card" onclick="alert('Bánh mì Sài Gòn')">
-      <div class="food-card-img" style="background:#fdf5e6">🥖</div>
+      <div class="food-card-img">
+  <img src="https://cdn.tcdulichtphcm.vn/upload/1-2025/images/2025-03-25/1742898108-481231772_122140861622606002_6478007692031959728_n.jpg" alt="Bánh mì Sài Gòn">
+</div>
       <div class="food-card-body">
         <div class="food-card-region">Miền Nam</div>
         <div class="food-card-name">Bánh mì Sài Gòn</div>
@@ -579,7 +599,9 @@ Ví dụ:
       </div>
     </div>
     <div class="food-card" onclick="alert('Thắng cố')">
-      <div class="food-card-img" style="background:#f0f4f0">🫕</div>
+        <div class="food-card-img">
+  <img src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/thang_co_0_d9b0a4ea3b.jpg" alt="Thắng Cố">
+</div>
       <div class="food-card-body">
         <div class="food-card-region">Tây Bắc</div>
         <div class="food-card-name">Thắng cố</div>
@@ -587,7 +609,7 @@ Ví dụ:
       </div>
     </div>
     <div class="food-card" onclick="alert('Hủ tiếu Nam Vang')">
-      <div class="food-card-img" style="background:#fdf0e6">🍲</div>
+      <div class="food-card-img"> <img src="https://www.huongnghiepaau.com/wp-content/uploads/2019/01/hu-tieu-nam-vang-1.jpg"></div>
       <div class="food-card-body">
         <div class="food-card-region">Miền Nam</div>
         <div class="food-card-name">Hủ tiếu Nam Vang</div>
@@ -595,7 +617,7 @@ Ví dụ:
       </div>
     </div>
     <div class="food-card" onclick="alert('Bún bò Huế')">
-      <div class="food-card-img" style="background:#fdf5f0">🍜</div>
+      <div class="food-card-img"> <img src="https://i.ytimg.com/vi/CSI9ildGX9s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCxhRIyoYY7k9ZuxY0YOC9jNFLapg"></div>
       <div class="food-card-body">
         <div class="food-card-region">Huế</div>
         <div class="food-card-name">Bún bò Huế</div>
@@ -603,7 +625,7 @@ Ví dụ:
       </div>
     </div>
     <div class="food-card" onclick="alert('Bánh cuốn')">
-      <div class="food-card-img" style="background:#f4f8f4">🫔</div>
+      <div class="food-card-img" ><img src="https://cdn.zsoft.solutions/poseidon-web/app/media/Kham-pha-am-thuc/11.2023/241123-banh-cuon-buffet-poseidon-4.jpg"></div>
       <div class="food-card-body">
         <div class="food-card-region">Miền Bắc</div>
         <div class="food-card-name">Bánh cuốn</div>
@@ -611,7 +633,7 @@ Ví dụ:
       </div>
     </div>
     <div class="food-card" onclick="alert('Cao lầu Hội An')">
-      <div class="food-card-img" style="background:#fdf8e6">🍛</div>
+      <div class="food-card-img"><img src="https://static.vinwonders.com/2022/10/cao-lau-hoi-an-1.jpg"></div>
       <div class="food-card-body">
         <div class="food-card-region">Miền Trung</div>
         <div class="food-card-name">Cao lầu Hội An</div>
@@ -735,27 +757,21 @@ Ví dụ:
     <a href="#">Mạng xã hội</a>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Du Lịch Địa Phương. All rights reserved.</span>
+    <span>© 2026 Du Lịch Địa Phương.</span>
     <span>Made with ♥ in Việt Nam</span>
   </div>
 </footer>
-function goToDetail(id, name) {
-  if (id === 7) window.location.href = 'dong-van.html';
-  else if (id === 6) window.location.href = 'trangan-tour.html';
-  else if (id === 5) window.location.href = 'sapa-tour.html';
-  else alert('Xem chi tiết: ' + name);
-}
 <script>
   // ─── DATA ───
   const destinations = [
-    { id:1, name:"Hà Giang", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"1.2k", emoji:"⛰️", bg:"#e8f0e8", tags:["Thiên nhiên","Núi cao"], tagClasses:["tag-nature","tag-highland"] },
-    { id:2, name:"Phố cổ Hội An", region:"Miền Trung", regionKey:"mien-trung", rating:4.9, reviews:"3.4k", emoji:"🏮", bg:"#f5ece0", tags:["Di tích","Ẩm thực"], tagClasses:["tag-heritage","tag-nature"] },
-    { id:3, name:"Đà Lạt", region:"Tây Nguyên", regionKey:"tay-nguyen", rating:4.7, reviews:"2.1k", emoji:"🌸", bg:"#f0edf8", tags:["Cao nguyên","Hoa"], tagClasses:["tag-highland","tag-nature"] },
-    { id:4, name:"Phú Quốc", region:"Miền Nam", regionKey:"mien-nam", rating:4.8, reviews:"1.8k", emoji:"🏖️", bg:"#e0f0f5", tags:["Biển đảo","Resort"], tagClasses:["tag-beach","tag-heritage"] },
-    { id:5, name:"Sapa", region:"Miền Bắc", regionKey:"mien-bac", rating:4.7, reviews:"2.0k", emoji:"🌾", bg:"#eaf0e4", tags:["Thiên nhiên","Văn hóa"], tagClasses:["tag-nature","tag-highland"] },
-    { id:6, name:"Tràng An", region:"Miền Bắc", regionKey:"mien-bac", rating:4.6, reviews:"1.5k", emoji:"🛶", bg:"#e4eef0", tags:["Di sản","Hang động"], tagClasses:["tag-heritage","tag-nature"] },
-    { id:7, name:"Đồng Văn", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"832", emoji:"🏔️", bg:"#ebe8e0", tags:["Núi đá","Văn hóa"], tagClasses:["tag-highland","tag-heritage"] },
-    { id:8, name:"Mũi Né", region:"Miền Nam", regionKey:"mien-nam", rating:4.5, reviews:"1.1k", emoji:"🌊", bg:"#e0ecf8", tags:["Biển","Resort"], tagClasses:["tag-beach","tag-heritage"] },
+    { id:1, name:"Hà Giang", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"1.2k",  img:"https://storage.googleapis.com/blogvxr-uploads/2024/02/f4011273-ha-noi-di-ha-giang-bao-nhieu-tieng-1486609-1250x715.jpg", tags:["Thiên nhiên","Núi cao"], tagClasses:["tag-nature","tag-highland"] },
+    { id:2, name:"Phố cổ Hội An", region:"Miền Trung", regionKey:"mien-trung", rating:4.9, reviews:"3.4k", img:"https://kienviet.net/wp-content/uploads/2020/12/Picture2.png", tags:["Di tích","Ẩm thực"], tagClasses:["tag-heritage","tag-nature"] },
+    { id:3, name:"Đà Lạt", region:"Tây Nguyên", regionKey:"tay-nguyen", rating:4.7, reviews:"2.1k", img:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Tat-tan-tat-kinh-nghiem-du-lich-da-lat-checkin-o-dau-an-gi-202206031411593741.jpg", tags:["Cao nguyên","Hoa"], tagClasses:["tag-highland","tag-nature"] },
+    { id:4, name:"Phú Quốc", region:"Miền Nam", regionKey:"mien-nam", rating:4.8, reviews:"1.8k", img:"https://bcp.cdnchinhphu.vn/334894974524682240/2025/6/23/phu-quoc-17506756503251936667562.jpg", tags:["Biển đảo","Resort"], tagClasses:["tag-beach","tag-heritage"] },
+    { id:5, name:"Sapa", region:"Miền Bắc", regionKey:"mien-bac", rating:4.7, reviews:"2.0k", img:"https://xesaoviet.com.vn/wp-content/uploads/2024/08/nui-ham-rong-acc-1.png", tags:["Thiên nhiên","Văn hóa"], tagClasses:["tag-nature","tag-highland"] },
+    { id:6, name:"Tràng An", region:"Miền Bắc", regionKey:"mien-bac", rating:4.6, reviews:"1.5k", img:"https://ik.imagekit.io/tvlk/blog/2022/11/khu-du-lich-trang-an-2.jpg", tags:["Di sản","Hang động"], tagClasses:["tag-heritage","tag-nature"] },
+    { id:7, name:"Đồng Văn", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"832", img:"https://dntt.mediacdn.vn/197608888129458176/2024/10/7/kinh-nghiem-di-du-lich-dong-van-ha-giang-tu-tuc-an-toan-thu-vi-1644768701-172829453677318018934.jpg", tags:["Núi đá","Văn hóa"], tagClasses:["tag-highland","tag-heritage"] },
+    { id:8, name:"Mũi Né", region:"Miền Nam", regionKey:"mien-nam", rating:4.5, reviews:"1.1k", img:"https://vcdn1-dulich.vnecdn.net/2022/04/03/MuiNeVNExpress3075891542181990-8691-6492-1648974014.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=E-1Y-hG3RxXRjUXHFvKQ6Q", tags:["Biển","Resort"], tagClasses:["tag-beach","tag-heritage"] },
   ];
 
   let currentFilter = 'all';
@@ -780,8 +796,8 @@ function goToDetail(id, name) {
       noRes.style.display = 'none';
       grid.innerHTML = filtered.map(d => `
         <div class="dest-card" onclick="goToDetail(${d.id}, '${d.name}')">
-          <div class="card-img" style="background:${d.bg}">
-            <span style="z-index:1">${d.emoji}</span>
+          <div class="card-img">
+  <img src="${d.img}" alt="${d.name}">
             <div class="card-region">${d.region}</div>
           </div>
           <div class="card-body">
