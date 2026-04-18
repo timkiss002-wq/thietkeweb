@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1,
+    "name": "Bún chả Hà Nội",
+    "region": "Miền Bắc · Hà Nội",
+    "regionKey": "mien-bac",
+    "img": "https://cooponline.vn/tin-tuc/wp-content/uploads/2025/10/hoc-cach-lam-bun-cha-mien-bac-chuan-ha-noi-tai-nha.png",
+    "desc": "Món ăn đặc trưng của người Hà Nội với bún tươi, chả nướng thơm lừng và nước chấm chua ngọt đậm đà.",
+    "chips": [
+      "Câu chuyện & xuất xứ",
+      "Công thức nấu",
+      "Quán nổi tiếng"
+    ],
+    "url": "bun-cha.html",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Mì Quảng",
+    "region": "Miền Trung · Quảng Nam",
+    "regionKey": "mien-trung",
+    "img": "https://cooponline.vn/tin-tuc/wp-content/uploads/2025/10/mi-quang-mon-dac-san-dam-da-thom-lung-xu-quang.png",
+    "desc": "Sợi mì vàng thắm, nước nhưn đậm vị, nhân tôm thịt thơm bùi, ăn kèm rau sống và bánh tráng giòn tan.",
+    "chips": [
+      "Nguyên liệu & cách làm",
+      "Biến tấu vùng miền"
+    ],
+    "url": "mi-quang.html",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Bánh mì Sài Gòn",
+    "region": "Miền Nam",
+    "regionKey": "mien-nam",
+    "img": "https://cdn.tcdulichtphcm.vn/upload/1-2025/images/2025-03-25/1742898108-481231772_122140861622606002_6478007692031959728_n.jpg",
+    "desc": "Bánh mì giòn tan, nhân phong phú đặc trưng phong cách Sài Gòn.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "banh-mi-sai-gon.html",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "name": "Thắng cố",
+    "region": "Tây Bắc",
+    "regionKey": "mien-bac",
+    "img": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/thang_co_0_d9b0a4ea3b.jpg",
+    "desc": "Món ăn truyền thống của người H'Mông, đặc sản phiên chợ vùng cao.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "thang-co.html",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Hủ tiếu Nam Vang",
+    "region": "Miền Nam",
+    "regionKey": "mien-nam",
+    "img": "https://www.huongnghiepaau.com/wp-content/uploads/2019/01/hu-tieu-nam-vang-1.jpg",
+    "desc": "Sợi hủ tiếu dai ngon, nước dùng ngọt thanh, topping đa dạng.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "hu-tieu-nam-vang.html",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Bún bò Huế",
+    "region": "Huế",
+    "regionKey": "mien-trung",
+    "img": "https://i.ytimg.com/vi/CSI9ildGX9s/hq720.jpg",
+    "desc": "Nước dùng cay nồng đặc trưng, sợi bún to, thịt bò mềm thơm.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "bun-bo-hue.html",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Bánh cuốn",
+    "region": "Miền Bắc",
+    "regionKey": "mien-bac",
+    "img": "https://cdn.zsoft.solutions/poseidon-web/app/media/Kham-pha-am-thuc/11.2023/241123-banh-cuon-buffet-poseidon-4.jpg",
+    "desc": "Bánh cuốn mỏng mịn, nhân thịt nấm thơm, chấm nước mắm pha chua ngọt.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "banh-cuon.html",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Cao lầu Hội An",
+    "region": "Miền Trung",
+    "regionKey": "mien-trung",
+    "img": "https://static.vinwonders.com/2022/10/cao-lau-hoi-an-1.jpg",
+    "desc": "Đặc sản chỉ có ở Hội An, sợi mì dày đặc biệt, thịt xá xíu, bánh đa giòn.",
+    "chips": [
+      "Nguyên liệu & câu chuyện"
+    ],
+    "url": "cao-lau-hoi-an.html",
+    "featured": false
+  }
+]

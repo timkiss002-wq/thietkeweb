@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Hà Giang",
+    "region": "Miền Bắc",
+    "regionKey": "mien-bac",
+    "rating": 4.8,
+    "reviews": "1.2k",
+    "img": "https://storage.googleapis.com/blogvxr-uploads/2024/02/f4011273-ha-noi-di-ha-giang-bao-nhieu-tieng-1486609-1250x715.jpg",
+    "tags": [
+      "Thiên nhiên",
+      "Núi cao"
+    ],
+    "tagClasses": [
+      "tag-nature",
+      "tag-highland"
+    ],
+    "url": "ha-giang.html"
+  },
+  {
+    "id": 2,
+    "name": "Phố cổ Hội An",
+    "region": "Miền Trung",
+    "regionKey": "mien-trung",
+    "rating": 4.9,
+    "reviews": "3.4k",
+    "img": "https://kienviet.net/wp-content/uploads/2020/12/Picture2.png",
+    "tags": [
+      "Di tích",
+      "Ẩm thực"
+    ],
+    "tagClasses": [
+      "tag-heritage",
+      "tag-nature"
+    ],
+    "url": "hoi-an.html"
+  },
+  {
+    "id": 3,
+    "name": "Đà Lạt",
+    "region": "Tây Nguyên",
+    "regionKey": "tay-nguyen",
+    "rating": 4.7,
+    "reviews": "2.1k",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Tat-tan-tat-kinh-nghiem-du-lich-da-lat-checkin-o-dau-an-gi-202206031411593741.jpg",
+    "tags": [
+      "Cao nguyên",
+      "Hoa"
+    ],
+    "tagClasses": [
+      "tag-highland",
+      "tag-nature"
+    ],
+    "url": "da-lat.html"
+  },
+  {
+    "id": 4,
+    "name": "Phú Quốc",
+    "region": "Miền Nam",
+    "regionKey": "mien-nam",
+    "rating": 4.8,
+    "reviews": "1.8k",
+    "img": "https://bcp.cdnchinhphu.vn/334894974524682240/2025/6/23/phu-quoc-17506756503251936667562.jpg",
+    "tags": [
+      "Biển đảo",
+      "Resort"
+    ],
+    "tagClasses": [
+      "tag-beach",
+      "tag-heritage"
+    ],
+    "url": "phu-quoc.html"
+  },
+  {
+    "id": 5,
+    "name": "Sapa",
+    "region": "Miền Bắc",
+    "regionKey": "mien-bac",
+    "rating": 4.7,
+    "reviews": "2.0k",
+    "img": "https://xesaoviet.com.vn/wp-content/uploads/2024/08/nui-ham-rong-acc-1.png",
+    "tags": [
+      "Thiên nhiên",
+      "Văn hóa"
+    ],
+    "tagClasses": [
+      "tag-nature",
+      "tag-highland"
+    ],
+    "url": "sapa-tour.html"
+  },
+  {
+    "id": 6,
+    "name": "Tràng An",
+    "region": "Miền Bắc",
+    "regionKey": "mien-bac",
+    "rating": 4.6,
+    "reviews": "1.5k",
+    "img": "https://ik.imagekit.io/tvlk/blog/2022/11/khu-du-lich-trang-an-2.jpg",
+    "tags": [
+      "Di sản",
+      "Hang động"
+    ],
+    "tagClasses": [
+      "tag-heritage",
+      "tag-nature"
+    ],
+    "url": "trangan-tour.html"
+  },
+  {
+    "id": 7,
+    "name": "Đồng Văn",
+    "region": "Miền Bắc",
+    "regionKey": "mien-bac",
+    "rating": 4.8,
+    "reviews": "832",
+    "img": "https://dntt.mediacdn.vn/197608888129458176/2024/10/7/kinh-nghiem-di-du-lich-dong-van-ha-giang-tu-tuc-an-toan-thu-vi-1644768701-172829453677318018934.jpg",
+    "tags": [
+      "Núi đá",
+      "Văn hóa"
+    ],
+    "tagClasses": [
+      "tag-highland",
+      "tag-heritage"
+    ],
+    "url": "dong-van.html"
+  },
+  {
+    "id": 8,
+    "name": "Mũi Né",
+    "region": "Miền Nam",
+    "regionKey": "mien-nam",
+    "rating": 4.5,
+    "reviews": "1.1k",
+    "img": "https://vcdn1-dulich.vnecdn.net/2022/04/03/MuiNeVNExpress3075891542181990-8691-6492-1648974014.jpg",
+    "tags": [
+      "Biển",
+      "Resort"
+    ],
+    "tagClasses": [
+      "tag-beach",
+      "tag-heritage"
+    ],
+    "url": "muine.html"
+  }
+]
