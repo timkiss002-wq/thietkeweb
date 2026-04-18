@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thắng Cố - Hồn Núi Rừng Tây Bắc — Đặc Sản Cao Nguyên | Du Lịch Địa Phương</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Be+Vietnam+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  .icon { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; flex-shrink: 0; }
+  .icon svg { width: 18px; height: 18px; stroke-width: 1.8; }
+  :root { --cream:#F7F3EC;--ink:#1A1612;--terracotta:#C5501A;--sage:#5C7A5E;--border:rgba(26,22,18,0.1);--muted:#6B5E52;--terracotta-light:#E8845A; }
+  *{box-sizing:border-box;}
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;margin:0;overflow-x:hidden;}
+  nav{position:sticky;top:0;z-index:100;background:rgba(247,243,236,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;gap:32px;height:60px;}
+  .logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--terracotta);letter-spacing:-0.3px;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+  .logo span{color:var(--ink);}
+  .nav-links{display:flex;align-items:center;gap:4px;list-style:none;flex:1;margin:0;padding:0;}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--terracotta);background:rgba(197,80,26,0.07);}
+  .nav-actions{display:flex;gap:8px;margin-left:auto;}
+  .btn-outline{padding:7px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit;}
+  .btn-outline:hover{border-color:var(--terracotta);color:var(--terracotta);}
+  .btn-fill{padding:7px 16px;border-radius:8px;border:none;background:var(--terracotta);color:white;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;}
+  .btn-fill:hover{background:#B04416;}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:12px 5% 20px;z-index:99;}
+  .mobile-menu.open{display:block;}
+  .mobile-menu a{display:block;text-decoration:none;color:var(--ink);font-size:15px;font-weight:500;padding:10px 0;border-bottom:1px solid var(--border);}
+  @media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}.btn-outline{display:none;}}
+  .container{max-width:1280px;margin:40px auto;padding:0 2.5%;}
+  .tour-title{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,36px);margin-bottom:10px;line-height:1.2;}
+  .rating-row{display:flex;align-items:center;gap:10px;color:var(--terracotta);font-weight:600;margin-bottom:25px;}
+  .slider-container{width:100%;height:450px;border-radius:16px;overflow:hidden;position:relative;margin-bottom:40px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+  .slides{display:flex;width:100%;height:100%;transition:transform 0.8s ease-in-out;}
+  .slide{min-width:100%;height:100%;}
+  .slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tour-grid{display:flex;gap:30px;align-items:flex-start;}
+  .tour-content{flex:2;min-width:0;}
+  .content-card{background:white;padding:30px;border-radius:16px;border:1px solid var(--border);margin-bottom:30px;}
+  .highlight-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;list-style:none;padding:0;}
+  .highlight-grid li{display:flex;gap:10px;font-size:14px;line-height:1.5;}
+  .highlight-grid li::before{content:"•";color:var(--terracotta);font-weight:bold;font-size:20px;line-height:1;}
+  .st-program-list .item{background:white;border:1px solid var(--border);border-radius:10px;margin-bottom:15px;overflow:hidden;}
+  .item-top{display:flex;justify-content:space-between;align-items:center;padding:10px 15px 5px;}
+  .day-label{background:#004494;color:white;font-size:12px;font-weight:600;padding:2px 10px;border-radius:4px;}
+  .meal-label{font-size:12px;color:var(--muted);}
+  .item-header{padding:5px 15px 15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+  .item-header h3{font-size:16px;font-weight:700;color:var(--ink);margin:0;flex:1;}
+  .arrow-icon{font-size:14px;color:var(--muted);transition:transform 0.3s ease;}
+  .item-body{padding:0 20px 20px;font-size:14px;color:var(--ink);display:none;}
+  .policy-section-title{font-family:'Playfair Display',serif;font-size:24px;margin:0 0 20px 0;}
+  .policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .policy-item h4{font-size:16px;font-weight:600;margin-bottom:15px;}
+  .policy-list{list-style:none;padding:0;margin:0;}
+  .policy-list li{font-size:14px;margin-bottom:10px;display:flex;gap:10px;line-height:1.5;}
+  .policy-list li.inc::before{content:'✓';color:#28a745;font-weight:bold;flex-shrink:0;}
+  .policy-box-small{background:var(--cream);border-radius:12px;padding:20px;border:1px solid var(--border);}
+  .children-policy-table{display:table;width:100%;border-spacing:0 10px;}
+  .cp-row{display:table-row;font-size:14px;line-height:1.5;}
+  .cp-dot{display:table-cell;color:var(--terracotta);font-size:20px;font-weight:bold;vertical-align:top;padding-right:8px;line-height:1.2;width:18px;}
+  .cp-label{display:table-cell;font-weight:700;vertical-align:top;white-space:nowrap;padding-right:16px;width:1%;}
+  .cp-desc{display:table-cell;vertical-align:top;}
+  .sidebar{flex:1;min-width:280px;max-width:340px;position:sticky;top:90px;align-self:flex-start;}
+  .sidebar-booking-box{background:white;border-radius:16px;padding:24px;box-shadow:0 15px 40px rgba(0,0,0,0.08);border:1px solid #eee;}
+  .price-header .label{font-size:18px;font-weight:700;}
+  .price-header .amount{font-size:32px;font-weight:800;color:#be2020;margin-left:5px;}
+  .price-header .sub-text{font-size:13px;color:var(--muted);margin-top:5px;display:block;}
+  .tour-specs{list-style:none;padding:0;margin-bottom:20px;}
+  .tour-specs li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5;font-size:14px;}
+  .tour-specs li strong{color:#004494;}
+  .tour-destinations-text{font-weight:700;font-size:15px;margin-bottom:20px;line-height:1.5;}
+  .btn-select-date{width:100%;padding:16px;background:#004494;color:white;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:20px;font-family:'Be Vietnam Pro',sans-serif;}
+  .btn-select-date:hover{background:#003070;}
+  .commitment-box{background:#ebf3ff;border-radius:12px;padding:18px;margin-bottom:20px;}
+  .commitment-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:13px;line-height:1.4;}
+  .commitment-item:last-child{margin-bottom:0;}
+  .check-icon{color:#004494;display:inline-flex;align-items:center;}
+  .check-icon svg{width:18px;height:18px;stroke-width:2;}
+  .contact-footer-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .btn-contact-outline{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 5px;border:1px solid #ddd;background:white;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;}
+  .btn-contact-outline:hover{border-color:var(--terracotta);color:var(--terracotta);}
+  .review-summary-box{display:flex;align-items:center;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+  .review-score-left{flex:0 0 220px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;text-align:center;}
+  .review-score-badge{background:#004494;color:white;font-size:32px;font-weight:800;border-radius:10px;padding:10px 22px;margin-bottom:12px;display:inline-block;}
+  .review-score-badge span{font-size:18px;font-weight:400;opacity:0.85;}
+  .review-score-label{color:#004494;font-weight:700;font-size:15px;margin-bottom:4px;}
+  .review-score-sub{font-size:13px;color:var(--muted);}
+  .review-divider{width:1px;align-self:stretch;background:var(--border);}
+  .review-bars-right{flex:1;padding:20px 28px;display:flex;flex-direction:column;gap:10px;}
+  .review-bar-row{display:flex;align-items:center;gap:12px;}
+  .rb-label{font-size:13px;color:#004494;font-weight:600;width:80px;text-align:right;flex-shrink:0;}
+  .rb-track{flex:1;height:8px;background:#e8e8e8;border-radius:4px;overflow:hidden;}
+  .rb-fill{height:100%;background:#004494;border-radius:4px;}
+  .rb-count{font-size:13px;font-weight:600;width:20px;text-align:right;}
+  .review-card{border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:14px;}
+  .review-card-header{display:flex;justify-content:space-between;margin-bottom:6px;}
+  .review-card-name{font-weight:700;font-size:14px;}
+  .review-card-date{font-size:12px;color:var(--muted);}
+  .review-card-stars{color:#f5a623;font-size:15px;margin-bottom:4px;}
+  .review-card-title{font-weight:700;font-size:14px;margin-bottom:4px;}
+  .review-card-body{font-size:14px;color:var(--muted);line-height:1.6;}
+  .review-form-section{border-top:1px solid var(--border);padding-top:24px;margin-top:8px;}
+  .review-star-select{display:flex;gap:6px;margin-bottom:16px;flex-direction:row-reverse;justify-content:flex-end;}
+  .star-opt{font-size:28px;color:#ddd;cursor:pointer;transition:color 0.15s;line-height:1;}
+  .star-opt.active{color:#f5a623;}
+  .review-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  .review-input{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Be Vietnam Pro',sans-serif;color:var(--ink);background:white;box-sizing:border-box;}
+  .review-input:focus{outline:none;border-color:var(--terracotta);}
+  .review-textarea{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Be Vietnam Pro',sans-serif;color:var(--ink);min-height:100px;resize:vertical;margin-bottom:14px;background:white;box-sizing:border-box;}
+  .review-textarea:focus{outline:none;border-color:var(--terracotta);}
+  .btn-submit-review{background:var(--terracotta);color:white;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;}
+  .btn-submit-review:hover{background:#a8421a;}
+  footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:50px 5% 30px;margin-top:50px;}
+  footer .logo{color:var(--terracotta-light)!important;font-size:24px;}
+  footer .logo span{color:rgba(255,255,255,0.7);}
+  .footer-bottom-line{font-size:13px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;margin-top:30px;}
+  @media(max-width:900px){.tour-grid{flex-direction:column;}.sidebar{position:static;width:100%;max-width:100%;}.highlight-grid{grid-template-columns:1fr;}.policy-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Địa điểm</a></li>
+    <li><a href="#" class="active">Ẩm thực</a></li>
+    <li><a href="#">Trải nghiệm</a></li>
+    <li><a href="#">Cộng đồng</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-outline">Đăng nhập</button>
+    <button class="btn-fill">Đăng ký</button>
+  </div>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Địa điểm</a>
+  <a href="#">Ẩm thực</a>
+  <a href="#">Trải nghiệm</a>
+  <a href="#">Cộng đồng</a>
+  <a href="#">Đăng nhập</a>
+  <a href="#">Đăng ký</a>
+</div>
+
+<div class="container">
+  <h1 class="tour-title">Thắng Cố: Hồn Núi Rừng Tây Bắc — Đặc Sản Cao Nguyên</h1>
+  <div class="rating-row">
+    <span>4.6★★★★★</span>
+    <span>(1.2k đánh giá)</span>
+  </div>
+
+  <div class="slider-container">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/thang_co_0_d9b0a4ea3b.jpg" alt="Thắng Cố 1"></div>
+      <div class="slide"><img src="https://dulichviet.com.vn/images/bandidau/am-thuc/thang-co-tay-bac-du-lich-viet-6.jpg" alt="Thắng Cố 2"></div>
+      <div class="slide"><img src="https://eholiday.vn/wp-content/uploads/2021/06/thang-co-sapa-dac-san-kinh-di-nhung-de-gay-nghien-4.jpg" alt="Thắng Cố 3"></div>
+    </div>
+    </div>
+  </div>
+
+  <div class="tour-grid">
+    <div class="tour-content">
+
+      <div class="content-card">
+        <h3 style="font-family:'Playfair Display';font-size:24px;margin-top:0;margin-bottom:6px;">Điểm Nổi Bật</h3>
+        <p style="font-size:14px;color:var(--muted);margin-top:0;">Món hầm truyền thống của người H'Mông, Tày — linh hồn phiên chợ vùng cao Tây Bắc:</p>
+        <ul class="highlight-grid">
+          <li>Nồi thắng cố hầm nhiều tiếng với hàng chục loại gia vị thảo mộc đặc trưng.</li>
+          <li>Nguyên liệu chính: ngựa, trâu, hoặc bò — toàn bộ phủ tạng và xương hầm nhừ.</li>
+          <li>Hương vị đậm đà, thơm nồng, hoàn toàn khác biệt với ẩm thực miền xuôi.</li>
+          <li>Thưởng thức cùng rượu ngô men lá — linh hồn của phiên chợ vùng cao.</li>
+          <li>Chỉ xuất hiện tại các phiên chợ vùng cao, không thể tìm ở thành phố lớn.</li>
+          <li>Từng được mô tả là "phải nếm một lần trong đời" trên nhiều tạp chí du lịch.</li>
+          <li>Phong tục quây quần bên nồi thắng cố là nét đẹp văn hóa đặc trưng.</li>
+          <li>Mắc khén và hạt dổi — hai loại gia vị độc đáo chỉ có ở vùng núi Tây Bắc.</li>
+        </ul>
+      </div>
+
+      <div class="content-card">
+        <div class="st-program-list">
+          <div class="item">
+            <div class="item-top"><span class="day-label">Nguyên Liệu</span><span class="meal-label"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span> Chuẩn bị</span></div>
+            <div class="item-header" onclick="toggleItem(this)"><h3>Nguyên Liệu Cần Thiết</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>Thịt & phủ tạng:</strong> Thịt ngựa/trâu/bò 1kg (cả thịt và phủ tạng); xương ống 500g.<br><strong>Gia vị đặc trưng:</strong> Thảo quả, hồi, quế, lá chanh, sả, gừng; mắm, muối, hạt dổi, mắc khén.<br><strong>Ăn kèm:</strong> Bánh ngô, rau thơm vùng cao, rượu ngô men lá.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-top"><span class="day-label">Sơ Chế</span><span class="meal-label"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></span> Chuẩn bị nhân</span></div>
+            <div class="item-header" onclick="toggleItem(this)"><h3>Cách Sơ Chế & Ướp Gia Vị</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>Nướng bánh:</strong> Nướng bánh mì ở 180°C khoảng 5 phút cho vỏ giòn, ruột mềm xốp. Hoặc nướng trên vỉ than nóng.</p>
+              <p><strong>Xá xíu:</strong> Ướp thịt heo với ngũ vị hương, xì dầu, đường, dầu hào. Áp chảo hoặc nướng đến khi vàng thơm.</p>
+              <p><strong>Dưa chua:</strong> Ngâm cà rốt, ớt sợi với giấm, đường, muối ít nhất 30 phút trước khi dùng.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-top"><span class="day-label">Hầm & Thưởng Thức</span><span class="meal-label"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 6-8 6-8 12a8 8 0 0 0 16 0c0-6-8-6-8-12z"/><path d="M12 22v-4"/></svg></span> Than củi</span></div>
+            <div class="item-header" onclick="toggleItem(this)"><h3>Hầm & Thưởng Thức</h3><span class="arrow-icon">▼</span></div>
+            <div class="item-body">
+              <p><strong>Xẻ bánh:</strong> Xẻ dọc bánh mì, phết đều pâté và mayonnaise lên hai mặt trong.</p>
+              <p><strong>Xếp nhân:</strong> Xếp chả lụa, thịt nguội, xá xíu. Thêm trứng ốp la nếu có. Cho dưa leo, rau mùi, dưa chua lên trên.</p>
+              <p><strong>Thưởng thức:</strong> Tưới tương ớt hoặc tương đen tùy khẩu vị. Ăn ngay khi bánh còn nóng giòn — không để lâu bánh mất độ giòn.</p>
+              <p><strong>Địa chỉ nổi tiếng:</strong> Bánh Mì Huỳnh Hoa – 26 Lê Thị Riêng; Bánh Mì Phượng; Như Lan – Hàm Nghi; Hòa Mã – Cao Thắng.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="policy-section-title">Giá Trị Dinh Dưỡng - Văn Hóa</h3>
+        <div class="policy-grid">
+          <div class="policy-item">
+            <h4><span class="icon" style="color:var(--sage)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Dinh Dưỡng (1 bát)</h4>
+            <ul class="policy-list">
+              <li class="inc">Protein cao từ thịt và phủ tạng động vật.</li>
+              <li class="inc">Collagen dồi dào từ xương hầm lâu nhiều tiếng.</li>
+              <li class="inc">Giàu khoáng chất và vitamin nhóm B.</li>
+              <li class="inc">Năng lượng cao, phù hợp khí hậu vùng cao lạnh giá.</li>
+            </ul>
+          </div>
+          <div class="policy-item">
+            <h4><span class="icon" style="color:#004494"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Văn Hóa</h4>
+            <ul class="policy-list">
+              <li class="inc">Gắn liền văn hóa người H'Mông, Tày từ hàng trăm năm.</li>
+              <li class="inc">Không thể thiếu tại các phiên chợ vùng cao mỗi tuần.</li>
+              <li class="inc">Thưởng thức cùng rượu ngô — nghi lễ giao kết truyền thống.</li>
+              <li class="inc">Được bảo tồn và ghi nhận là di sản ẩm thực quốc gia.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="policy-section-title">Mẹo - Lưu Ý Khi Thưởng Thức</h3>
+        <div class="children-policy-table" style="margin-bottom:25px;">
+          <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Thời điểm:</span><span class="cp-desc">Phiên chợ Chủ Nhật tại Đồng Văn, Bắc Hà, Mèo Vạc — chợ họp từ sáng sớm.</span></div>
+          <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Kết hợp:</span><span class="cp-desc">Uống cùng rượu ngô men lá — cách thưởng thức truyền thống của người H'Mông.</span></div>
+          <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Chọn nồi:</span><span class="cp-desc">Chọn nồi đang sôi sùng sục, hầm nhiều tiếng mới đạt độ thơm ngon chuẩn.</span></div>
+          <div class="cp-row"><span class="cp-dot">•</span><span class="cp-label">Lưu ý:</span><span class="cp-desc">Mùi khá mạnh với người lần đầu thử — cần dũng cảm và lòng hiếu kỳ!</span></div>
+        </div>
+        <div class="policy-grid">
+          <div class="policy-box-small">
+            <h4 style="margin-top:0;font-size:15px;display:flex;align-items:center;gap:6px;"><span class="icon" style="color:#004494"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Địa Chỉ Nổi Tiếng</h4>
+            <p style="font-size:14px;color:var(--muted);margin:0;">Chợ Đồng Văn – Hà Giang; Chợ Bắc Hà – Lào Cai; Chợ Mèo Vạc; phiên chợ vùng cao mỗi Chủ Nhật.</p>
+          </div>
+          <div class="policy-box-small">
+            <h4 style="margin-top:0;font-size:15px;display:flex;align-items:center;gap:6px;"><span class="icon" style="color:var(--terracotta)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span> Giá Tham Khảo</h4>
+            <p style="font-size:14px;color:var(--muted);margin:0;">Một bát thắng cố tại chợ vùng cao dao động 50.000đ – 120.000đ tùy địa phương.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="policy-section-title">Đánh Giá</h3>
+        <div class="review-summary-box">
+          <div class="review-score-left">
+            <div class="review-score-badge">0<span>/5</span></div>
+            <div class="review-score-label">Chưa có đánh giá</div>
+            <div class="review-score-sub">Dựa trên <strong>0 đánh giá</strong></div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-bars-right">
+            <div class="review-bar-row"><span class="rb-label">Tuyệt vời</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Rất tốt</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Bình thường</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Không tốt</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+            <div class="review-bar-row"><span class="rb-label">Kinh khủng</span><div class="rb-track"><div class="rb-fill" style="width:0%"></div></div><span class="rb-count">0</span></div>
+          </div>
+        </div>
+        <p id="review-pagination-text" style="font-size:13px;color:var(--muted);">Đang hiển thị 0 – 0 của 0 đánh giá</p>
+        <div id="review-list"></div>
+        <div class="review-form-section">
+          <h4 style="margin-top:0;">Viết Đánh Giá Của Bạn</h4>
+          <div class="review-star-select">
+            <span class="star-opt" data-val="5">★</span><span class="star-opt" data-val="4">★</span><span class="star-opt" data-val="3">★</span><span class="star-opt" data-val="2">★</span><span class="star-opt" data-val="1">★</span>
+          </div>
+          <div class="review-form-row">
+            <input class="review-input" id="review-name" placeholder="Họ và tên">
+            <input class="review-input" id="review-title" placeholder="Tiêu đề đánh giá">
+          </div>
+          <textarea class="review-textarea" id="review-body" placeholder="Chia sẻ trải nghiệm của bạn..."></textarea>
+          <button class="btn-submit-review" onclick="submitReview()">Gửi Đánh Giá</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-booking-box">
+        <div class="price-header" style="margin-bottom:16px;">
+          <span class="label">Giá từ</span><span class="amount">50.000đ</span>
+          <span class="sub-text">/ bát · Tại các phiên chợ vùng cao</span>
+        </div>
+        <ul class="tour-specs">
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></span> <span>Loại món</span> <strong>Món hầm</strong></li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> <span>Xuất xứ</span> <strong>Hà Giang, Lào Cai</strong></li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span> <span>Thời gian</span> <strong>4–6 giờ hầm</strong></li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> <span>Độ cay</span> <strong>Vừa–Cay</strong></li>
+          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> <span>Phù hợp</span> <strong>Người lớn</strong></li>
+        </ul>
+        <p class="tour-destinations-text"><span class="icon" style="margin-right:6px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>Quán nổi tiếng: Chợ Đồng Văn, Chợ Bắc Hà, Chợ Mèo Vạc</p>
+        <button class="btn-select-date">Xem Bản Đồ Quán</button>
+        <div class="commitment-box">
+          <div class="commitment-item"><span class="icon check-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div>Thịt và phủ tạng tươi, mổ trong ngày phiên chợ</div></div>
+          <div class="commitment-item"><span class="icon check-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div>Gia vị thảo mộc bản địa rang tại chỗ mỗi buổi sáng</div></div>
+          <div class="commitment-item"><span class="icon check-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div>Mắc khén & hạt dổi — linh hồn nồi thắng cố vùng cao</div></div>
+        </div>
+        <div class="contact-footer-btns">
+          <a href="tel:19001986" class="btn-contact-outline"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span> Hotline</a>
+          <a href="#" class="btn-contact-outline"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> Zalo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+  <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+</footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = document.querySelectorAll('.slide').length;
+  setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; slides.style.transform = `translateX(-${currentSlide * 100}%)`; }, 3000);
+  function toggleItem(header) { const body = header.nextElementSibling; const arrow = header.querySelector('.arrow-icon'); const isOpen = body.style.display === 'block'; body.style.display = isOpen ? 'none' : 'block'; arrow.style.transform = isOpen ? '' : 'rotate(180deg)'; }
+  let reviews = [], selectedStar = 0;
+  document.querySelectorAll('.star-opt').forEach(star => { star.addEventListener('click', () => { selectedStar = parseInt(star.dataset.val); document.querySelectorAll('.star-opt').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= selectedStar)); }); });
+  function submitReview() { const name = document.getElementById('review-name').value.trim(); const title = document.getElementById('review-title').value.trim(); const body = document.getElementById('review-body').value.trim(); if (!name || !title || !body || selectedStar === 0) { alert('Vui lòng điền đầy đủ và chọn số sao!'); return; } reviews.unshift({ name, title, body, star: selectedStar, date: new Date().toLocaleDateString('vi-VN') }); document.getElementById('review-name').value = ''; document.getElementById('review-title').value = ''; document.getElementById('review-body').value = ''; selectedStar = 0; document.querySelectorAll('.star-opt').forEach(s => s.classList.remove('active')); renderReviews(); }
+  function renderReviews() { const total = reviews.length; document.getElementById('review-pagination-text').textContent = total === 0 ? 'Đang hiển thị 0 – 0 của 0 đánh giá' : `Đang hiển thị 1 – ${total} của ${total} đánh giá`; const avg = total === 0 ? 0 : (reviews.reduce((s,r) => s+r.star, 0)/total).toFixed(1); document.querySelector('.review-score-badge').innerHTML = `${avg}<span>/5</span>`; document.querySelector('.review-score-label').textContent = total === 0 ? 'Chưa có đánh giá' : 'Điểm trung bình'; document.querySelector('.review-score-sub').innerHTML = `Dựa trên <strong>${total} đánh giá</strong>`; document.getElementById('review-list').innerHTML = reviews.map(r => `<div class="review-card"><div class="review-card-header"><span class="review-card-name">${r.name}</span><span class="review-card-date">${r.date}</span></div><div class="review-card-stars">${'★'.repeat(r.star)}${'☆'.repeat(5-r.star)}</div><div class="review-card-title">${r.title}</div><div class="review-card-body">${r.body}</div></div>`).join(''); }
+  const hamBtn = document.getElementById('hamburgerBtn'); const mobileMenu = document.getElementById('mobileMenu');
+  hamBtn.addEventListener('click', () => { hamBtn.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { hamBtn.classList.remove('open'); mobileMenu.classList.remove('open'); }); });
+  renderReviews();
+</script>
+</body>
+</html>
