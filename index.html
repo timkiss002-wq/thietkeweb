@@ -131,8 +131,25 @@
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
   .panel-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--ink); }
-  .itinerary-item { padding: 20px 0 20px 25px; border-bottom: 1px solid var(--border); position: relative; transition: all 0.3s ease; }
-  .itinerary-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--border); }
+/* Tinh chỉnh Itinerary Item */
+.itinerary-item {
+  cursor: default;
+  border-left: 2px solid var(--border);
+  margin-left: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+.itinerary-item:last-child {
+  border-bottom: none;
+}
+.iti-name:hover {
+  color: var(--terracotta-light) !important;
+  text-decoration: underline;
+}
+#itiFilterBar .food-filter-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+}  .itinerary-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--border); }
   .itinerary-item::after { content: ''; position: absolute; left: -4px; top: 25px; width: 10px; height: 10px; border-radius: 50%; background: var(--sand); border: 2px solid white; transition: all 0.3s ease; }
   .itinerary-item:hover { background: rgba(197,80,26,0.03); padding-left: 35px; }
   .itinerary-item:hover::after { background: var(--terracotta); transform: scale(1.5); }
@@ -332,23 +349,13 @@
   </div>
   <div class="two-col fade-in" style="margin-top:20px">
     <div class="panel">
-      <div class="panel-title">Lịch trình gợi ý</div>
-      <div class="itinerary-item">
-        <div class="iti-name">Hội An · 3 ngày 2 đêm</div>
-        <div class="iti-days">Ngày 1: Phố cổ, đèn lồng, ẩm thực đường phố<br>Ngày 2: Làng rau Trà Quế, biển An Bàng<br>Ngày 3: Mỹ Sơn, mua sắm, về</div>
-        <div class="iti-chips"><span class="iti-chip">Thiên nhiên</span><span class="iti-chip">Ẩm thực</span><span class="iti-chip">Làng nghề</span></div>
-      </div>
-      <div class="itinerary-item">
-        <div class="iti-name">Đà Lạt · 2 ngày 1 đêm</div>
-        <div class="iti-days">Ngày 1: Hồ Xuân Hương, chợ đêm, café<br>Ngày 2: Đồi chè Cầu Đất, thác Datanla</div>
-        <div class="iti-chips"><span class="iti-chip">Thiên nhiên</span><span class="iti-chip">Lễ hội</span></div>
-      </div>
-      <div class="itinerary-item" style="border:none">
-        <div class="iti-name">Hà Nội ẩm thực · 1 ngày</div>
-        <div class="iti-days">Sáng: Phở Bát Đàn, bún chả Hàng Mành<br>Trưa: Bún ốc, chả cá Lã Vọng<br>Tối: Bia hơi Hàng Bài, bánh mì bơ</div>
-        <div class="iti-chips"><span class="iti-chip">Ẩm thực</span></div>
-      </div>
+  <div class="panel-title">Lịch trình gợi ý</div>
+  <div class="food-filter-bar" id="itiFilterBar" style="margin-bottom: 15px;">
     </div>
+  
+  <div id="itineraryContainer">
+    </div>
+</div>
     <div class="panel" id="community">
       <div class="panel-title">Từ cộng đồng</div>
       <!-- DOM: Community posts — render động -->
@@ -459,6 +466,78 @@ let currentFoodFilter = 'all';
 // ════════════════════════════════════════════════════════════
 //  ① AJAX: fetch() load JSON — THAO TÁC DOM sau khi có data
 // ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════
+//  DATA LỊCH TRÌNH (Framework Data)
+// ════════════════════════════════════════════════════════════
+const allItineraries = [
+  {
+    id: 1,
+    name: "Hội An · 3 ngày 2 đêm",
+    days: [
+      "Ngày 1: Phố cổ, đèn lồng, ẩm thực đường phố",
+      "Ngày 2: Làng rau Trà Quế, biển An Bàng",
+      "Ngày 3: Mỹ Sơn, mua sắm, về"
+    ],
+    tags: ["Thiên nhiên", "Ẩm thực", "Làng nghề"],
+    category: "mien-trung"
+  },
+  {
+    id: 2,
+    name: "Đà Lạt · 2 ngày 1 đêm",
+    days: [
+      "Ngày 1: Hồ Xuân Hương, chợ đêm, café",
+      "Ngày 2: Đồi chè Cầu Đất, thác Datanla"
+    ],
+    tags: ["Thiên nhiên", "Lễ hội"],
+    category: "tay-nguyen"
+  },
+  {
+    id: 3,
+    name: "Hà Nội ẩm thực · 1 ngày",
+    days: [
+      "Sáng: Phở Bát Đàn, bún chả Hàng Mành",
+      "Trưa: Bún ốc, chả cá Lã Vọng",
+      "Tối: Bia hơi Hàng Bài, bánh mì bơ"
+    ],
+    tags: ["Ẩm thực"],
+    category: "mien-bac"
+  }
+];
+
+let currentItiFilter = 'all';
+
+// ════════════════════════════════════════════════════════════
+//  RENDER ITINERARY
+// ════════════════════════════════════════════════════════════
+function renderItineraries() {
+  const container = document.getElementById('itineraryContainer');
+  
+  const filtered = allItineraries.filter(item => 
+    currentItiFilter === 'all' || item.category === currentItiFilter
+  );
+
+  container.innerHTML = filtered.map(iti => `
+    <div class="itinerary-item fade-in visible">
+      <div class="iti-name" style="font-weight: 700; cursor:pointer" onclick="viewItiDetail(${iti.id})">
+        ${iti.name}
+      </div>
+      <div class="iti-days">
+        ${iti.days.join('<br>')}
+      </div>
+      <div class="iti-chips">
+        ${iti.tags.map(tag => `<span class="iti-chip">${tag}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// Hàm lọc lịch trình
+function filterItinerary(el, key) {
+  document.querySelectorAll('#itiFilterBar .food-filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  currentItiFilter = key;
+  renderItineraries();
+}
 
 /**
  * loadDestinations()
@@ -883,7 +962,7 @@ function handleLogin() {
   if (!email || !pw) { showToast('Vui lòng điền đầy đủ thông tin.', 'var(--terracotta)'); return; }
   if (!/\S+@\S+\.\S+/.test(email)) { showToast('Email không hợp lệ.', 'var(--terracotta)'); return; }
   closeAuth();
-  showToast('✓ Đăng nhập thành công! Chào mừng trở lại 👋');
+  showToast('✓ Đăng nhập thành công! Chào mừng trở lại ');
 }
 
 function handleRegister() {
@@ -895,7 +974,7 @@ function handleRegister() {
   if (!/\S+@\S+\.\S+/.test(email)) { showToast('Email không hợp lệ.', 'var(--terracotta)'); return; }
   if (pw.length < 8) { showToast('Mật khẩu tối thiểu 8 ký tự.', 'var(--terracotta)'); return; }
   closeAuth();
-  showToast('✓ Chào mừng ' + first + ' ' + last + '! Tài khoản đã được tạo 🎉');
+  showToast('✓ Chào mừng ' + first + ' ' + last + '! Tài khoản đã được tạo ');
 }
 
 function socialLogin(provider) {
@@ -941,7 +1020,24 @@ function type() {
   setTimeout(type, spd);
 }
 type();
+// 1. Tạo dữ liệu cho địa điểm mới
+const newTrip = {
+  id: 4,
+  name: "Sapa · 3 ngày 2 đêm",
+  days: [
+    "Ngày 1: Hà Nội - Sapa - Bản Cát Cát",
+    "Ngày 2: Chinh phục đỉnh Fansipan",
+    "Ngày 3: Thăm bản Tả Phìn - Về Hà Nội"
+  ],
+  tags: ["Núi cao", "Văn hóa", "Sống ảo"],
+  category: "mien-bac"
+};
 
+// 2. Push vào mảng
+allItineraries.push(newTrip);
+
+// 3. Gọi hàm render để cập nhật giao diện ngay lập tức
+renderItineraries();
 // ════════════════════════════════════════════════════════════
 //  DATA DỰ PHÒNG (dùng khi fetch thất bại — chạy file://)
 // ════════════════════════════════════════════════════════════
