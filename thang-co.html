@@ -117,7 +117,7 @@
   footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:50px 5% 30px;margin-top:50px;}
   footer .logo{color:var(--terracotta-light)!important;font-size:24px;}
   footer .logo span{color:rgba(255,255,255,0.7);}
-  .footer-bottom-line{font-size:13px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;margin-top:30px;}
+ .footer-bottom-line { font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; width: 100%; text-align: center; margin-top: 30px; }
   @media(max-width:900px){.tour-grid{flex-direction:column;}.sidebar{position:static;width:100%;max-width:100%;}.highlight-grid{grid-template-columns:1fr;}.policy-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -151,8 +151,8 @@
 <div class="container">
   <h1 class="tour-title">Thắng Cố: Hồn Núi Rừng Tây Bắc — Đặc Sản Cao Nguyên</h1>
   <div class="rating-row">
-    <span>4.6★★★★★</span>
-    <span>(1.2k đánh giá)</span>
+    <span>0★</span>
+    <span>(0 đánh giá)</span>
   </div>
 
   <div class="slider-container">
@@ -162,7 +162,7 @@
       <div class="slide"><img src="https://eholiday.vn/wp-content/uploads/2021/06/thang-co-sapa-dac-san-kinh-di-nhung-de-gay-nghien-4.jpg" alt="Thắng Cố 3"></div>
     </div>
     </div>
-  </div>
+    
 
   <div class="tour-grid">
     <div class="tour-content">
@@ -320,25 +320,81 @@
   </div>
 </div>
 
+
 <footer>
-  <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
-  <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; padding: 0;">
+   <div style="margin-bottom: 20px; width: 100%;">
+     <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+     <p style="font-size: 15px; margin-top: 10px; color: rgba(255,255,255,0.8);">Khám phá Việt Nam theo cách của người bản địa.</p>
+   </div>
+   <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ </div>
 </footer>
 
 <script>
   let currentSlide = 0;
   const slides = document.getElementById('slides');
   const totalSlides = document.querySelectorAll('.slide').length;
-  setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; slides.style.transform = `translateX(-${currentSlide * 100}%)`; }, 3000);
-  function toggleItem(header) { const body = header.nextElementSibling; const arrow = header.querySelector('.arrow-icon'); const isOpen = body.style.display === 'block'; body.style.display = isOpen ? 'none' : 'block'; arrow.style.transform = isOpen ? '' : 'rotate(180deg)'; }
-  let reviews = [], selectedStar = 0;
-  document.querySelectorAll('.star-opt').forEach(star => { star.addEventListener('click', () => { selectedStar = parseInt(star.dataset.val); document.querySelectorAll('.star-opt').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= selectedStar)); }); });
-  function submitReview() { const name = document.getElementById('review-name').value.trim(); const title = document.getElementById('review-title').value.trim(); const body = document.getElementById('review-body').value.trim(); if (!name || !title || !body || selectedStar === 0) { alert('Vui lòng điền đầy đủ và chọn số sao!'); return; } reviews.unshift({ name, title, body, star: selectedStar, date: new Date().toLocaleDateString('vi-VN') }); document.getElementById('review-name').value = ''; document.getElementById('review-title').value = ''; document.getElementById('review-body').value = ''; selectedStar = 0; document.querySelectorAll('.star-opt').forEach(s => s.classList.remove('active')); renderReviews(); }
-  function renderReviews() { const total = reviews.length; document.getElementById('review-pagination-text').textContent = total === 0 ? 'Đang hiển thị 0 – 0 của 0 đánh giá' : `Đang hiển thị 1 – ${total} của ${total} đánh giá`; const avg = total === 0 ? 0 : (reviews.reduce((s,r) => s+r.star, 0)/total).toFixed(1); document.querySelector('.review-score-badge').innerHTML = `${avg}<span>/5</span>`; document.querySelector('.review-score-label').textContent = total === 0 ? 'Chưa có đánh giá' : 'Điểm trung bình'; document.querySelector('.review-score-sub').innerHTML = `Dựa trên <strong>${total} đánh giá</strong>`; document.getElementById('review-list').innerHTML = reviews.map(r => `<div class="review-card"><div class="review-card-header"><span class="review-card-name">${r.name}</span><span class="review-card-date">${r.date}</span></div><div class="review-card-stars">${'★'.repeat(r.star)}${'☆'.repeat(5-r.star)}</div><div class="review-card-title">${r.title}</div><div class="review-card-body">${r.body}</div></div>`).join(''); }
-  const hamBtn = document.getElementById('hamburgerBtn'); const mobileMenu = document.getElementById('mobileMenu');
-  hamBtn.addEventListener('click', () => { hamBtn.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-  mobileMenu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { hamBtn.classList.remove('open'); mobileMenu.classList.remove('open'); }); });
+
+  setInterval(() => {
+    currentSlide++;
+    if (currentSlide >= totalSlides) {
+      currentSlide = 0;
+    }
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }, 3000); // 3 giây chuyển ảnh
+
+  function toggleItem(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.arrow-icon');
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  }
+
+  document.querySelectorAll('.star-opt').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedStar = parseInt(star.dataset.val);
+      document.querySelectorAll('.star-opt').forEach(s => s.classList.toggle('active', parseInt(s.dataset.val) <= selectedStar));
+    });
+  });
+  function submitReview() {
+    const name = document.getElementById('review-name').value.trim();
+    const title = document.getElementById('review-title').value.trim();
+    const body = document.getElementById('review-body').value.trim();
+    if (!name || !title || !body || selectedStar === 0) { alert('Vui lòng điền đầy đủ và chọn số sao!'); return; }
+    reviews.unshift({ name, title, body, star: selectedStar, date: new Date().toLocaleDateString('vi-VN') });
+    document.getElementById('review-name').value = '';
+    document.getElementById('review-title').value = '';
+    document.getElementById('review-body').value = '';
+    selectedStar = 0;
+    document.querySelectorAll('.star-opt').forEach(s => s.classList.remove('active'));
+    renderReviews();
+  }
+  function renderReviews() {
+    const total = reviews.length;
+    document.getElementById('review-pagination-text').textContent = total === 0 ? 'Đang hiển thị 0 – 0 của 0 đánh giá' : `Đang hiển thị 1 – ${total} của ${total} đánh giá`;
+    const avg = total === 0 ? 0 : (reviews.reduce((s,r) => s+r.star, 0)/total).toFixed(1);
+    document.querySelector('.review-score-badge').innerHTML = `${avg}<span>/5</span>`;
+    document.querySelector('.review-score-label').textContent = total === 0 ? 'Chưa có đánh giá' : 'Điểm trung bình';
+    document.querySelector('.review-score-sub').innerHTML = `Dựa trên <strong>${total} đánh giá</strong>`;
+    document.getElementById('review-list').innerHTML = reviews.map(r => `<div class="review-card"><div class="review-card-header"><span class="review-card-name">${r.name}</span><span class="review-card-date">${r.date}</span></div><div class="review-card-stars">${'★'.repeat(r.star)}${'☆'.repeat(5-r.star)}</div><div class="review-card-title">${r.title}</div><div class="review-card-body">${r.body}</div></div>`).join('');
+  }
+  // ─── HAMBURGER ───
+  const hamBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamBtn.addEventListener('click', () => {
+    hamBtn.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamBtn.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
   renderReviews();
+  
 </script>
 </body>
 </html>

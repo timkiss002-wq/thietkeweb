@@ -117,7 +117,7 @@
   footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:50px 5% 30px;margin-top:50px;}
   footer .logo{color:var(--terracotta-light)!important;font-size:24px;}
   footer .logo span{color:rgba(255,255,255,0.7);}
-  .footer-bottom-line{font-size:13px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;margin-top:30px;}
+ .footer-bottom-line { font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; width: 100%; text-align: center; margin-top: 30px; }
   @media(max-width:900px){.tour-grid{flex-direction:column;}.sidebar{position:static;width:100%;max-width:100%;}.highlight-grid{grid-template-columns:1fr;}.policy-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -151,8 +151,8 @@
 <div class="container">
   <h1 class="tour-title">Bún Bò Huế: Vị Cay Đậm Đà — Quốc Hồn Ẩm Thực Cố Đô</h1>
   <div class="rating-row">
-    <span>4.9★★★★★</span>
-    <span>(4.7k đánh giá)</span>
+    <span>0★</span>
+    <span>(0 đánh giá)</span>
   </div>
 
   <div class="slider-container">
@@ -162,7 +162,6 @@
       <div class="slide"><img src="https://media-cdn-v2.laodong.vn/storage/newsportal/2024/10/2/1402467/Bun-1.jpg" alt="Bún Bò Huế 3"></div>
     </div>
     </div>
-  </div>
 
   <div class="tour-grid">
     <div class="tour-content">
@@ -321,8 +320,13 @@
 </div>
 
 <footer>
-  <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
-  <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; padding: 0;">
+   <div style="margin-bottom: 20px; width: 100%;">
+     <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+     <p style="font-size: 15px; margin-top: 10px; color: rgba(255,255,255,0.8);">Khám phá Việt Nam theo cách của người bản địa.</p>
+   </div>
+   <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ </div>
 </footer>
 
 <script>

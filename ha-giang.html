@@ -389,14 +389,14 @@
 <div class="container">
  <h1 class="tour-title">Hà Giang: Vẻ đẹp hùng vĩ nơi địa đầu Tổ quốc</h1>
   <div class="rating-row">
-   <span class="stars">0★</span>
-   <span>(Chưa có đánh giá)</span>
+   <span class="stars">5★</span>
+   <span>(1 đánh giá)</span>
  </div>
   <div class="slider-container">
    <div class="slides" id="slides">
      <div class="slide"><img src="https://vcdn1-dulich.vnecdn.net/2022/07/05/Hoang-Su-Phi-Ha-Giang-1196-164-6724-9210-1657019230.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=58DjXeG9wWkeY-5IWSbikw" alt="Hội An"></div>
      <div class="slide"><img src="https://image.vietnam.travel/sites/default/files/styles/top_banner/public/2021-05/Ha%20Giang%20Travel%20Guide%20Vietnam%20Tourism.jpg?itok=bB2gv-69" alt="Sapa 2"></div>
-     <div class="slide"><img src="https://hagiang.travel/wp-content/uploads/2022/10/Tha%CC%81c-ba%CC%89n-Gio%CC%82%CC%81c.jpg" alt="Sapa 3"></div>
+     <div class="slide"><img src="https://booking.dulichthiennhien.vn/Data/image/H%C3%8CNH%20WEB/MI%E1%BB%80N%20B%E1%BA%AEC/TH%C3%81C%20B%E1%BA%A2N%20GI%E1%BB%90C.jpg" alt="Sapa 3"></div>
    </div>
  </div>
 
@@ -807,8 +807,15 @@
 
 
  // ─── ĐÁNH GIÁ ───
- let reviews = [];
- let selectedStar = 0;
+ let reviews = [
+   { 
+     name: 'Minh Quân', 
+     title: 'Hà Giang mùa hoa tam giác mạch', 
+     body: 'Tháng 10 là thời điểm đẹp nhất để đến Hà Giang. Hoa tam giác mạch nở rộ, cảnh núi đá hùng vĩ và không khí trong lành thực sự khiến mình không muốn về.', 
+     star: 5, 
+     date: '17/04/2026' 
+   }
+ ];
 
 
  // Chọn sao
@@ -917,7 +924,12 @@
  }
 </script>
 
-
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+ <div class="modal-content-box">
+   <button class="close-modal" onclick="closeModal()">×</button>
+   <div id="modal-content"></div>
+ </div>
+</div>
 </body>
 </html>
 

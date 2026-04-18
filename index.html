@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <title>Du Lịch Địa Phương — Khám phá Việt Nam</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -525,34 +526,52 @@ function loadFoods() {
  * - Thực tế sẽ là: fetch('api/posts.json') hoặc fetch('https://api.example.com/posts')
  */
 function loadCommunityPosts() {
-  const postsContainer = document.getElementById('communityPosts');
-  // DOM: hiện trạng thái loading
-  postsContainer.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:8px 0">Đang tải bài viết...</p>';
+  const $container = $('#communityPosts');
+  $container.html('<p style="color:var(--muted);font-size:13px;padding:8px 0">Đang tải bài viết...</p>');
 
-  // Mô phỏng AJAX delay 800ms (thực tế là fetch từ server)
   setTimeout(function() {
     const posts = [
-      { initials:'TB', avatarClass:'green', author:'Trần Bảo', meta:'2 giờ trước · Hội An', title:'3 ngày ở Hội An — không thể quên!', preview:'Phố cổ về đêm lung linh đèn lồng, đồ ăn ngon và người dân thân thiện. Cao Lầu và Mì Quảng ở đây mới chuẩn vị nhất...', likes:142, comments:38 },
-      { initials:'LH', avatarClass:'orange', author:'Lê Hương', meta:'5 giờ trước · Bún chả Hà Nội', title:'Bún chả Hương Liên — top 5 quán nổi tiếng', preview:'Quán nổi tiếng, bún chả vị ổn, dễ ăn nhưng không quá đặc sắc; đông khách nên trải nghiệm hơi du lịch hóa.', likes:87, comments:21 },
-      { initials:'MQ', avatarClass:'brown', author:'Minh Quân', meta:'1 ngày trước · Hà Giang', title:'Hà Giang mùa hoa tam giác mạch', preview:'Tháng 10 là thời điểm đẹp nhất để đến Hà Giang. Hoa tam giác mạch nở rộ, cảnh núi đá hùng vĩ...', likes:234, comments:56 },
+      { 
+        initials:'TB', class:'green', author:'Trần Bảo', 
+        meta:'2 giờ trước · Hội An', 
+        title:'3 ngày ở Hội An — không thể quên!', 
+        url:'hoi-an.html#review-section' 
+      },
+      { 
+        initials:'LH', class:'orange', author:'Lê Hương', 
+        meta:'5 giờ trước · Bún chả Hà Nội', 
+        title:'Bún chả Hương Liên — top 5 quán nổi tiếng', 
+        url:'bun-cha.html#review-section' 
+      },
+      { 
+        initials:'MQ', class:'brown', author:'Minh Quân', 
+        meta:'1 ngày trước · Hà Giang', 
+        title:'Hà Giang mùa hoa tam giác mạch', 
+        url:'ha-giang.html#review-section' // 
+      }
     ];
 
-    // DOM: xóa loading, render bài viết từ data
-    postsContainer.innerHTML = posts.map(function(p) {
-      return `
-        <div class="community-post" onclick="alert('Đọc bài: ${p.title}')">
+    $container.empty();
+
+    $.each(posts, function(i, p) {
+      const $post = $(`
+        <div class="community-post">
           <div class="post-author">
-            <div class="avatar ${p.avatarClass}">${p.initials}</div>
+            <div class="avatar ${p.class}">${p.initials}</div>
             <div class="post-meta"><strong>${p.author}</strong>${p.meta}</div>
           </div>
           <div class="post-title">${p.title}</div>
-          <div class="post-preview">${p.preview}</div>
-          <div class="post-stats">
-            <span class="post-stat" onclick="likePost(this, event)">❤ <span class="like-count">${p.likes}</span></span>
-            <span class="post-stat">💬 ${p.comments}</span>
-          </div>
-        </div>`;
-    }).join('');
+          <div class="post-preview">Nhấn để xem chi tiết bài viết và các đánh giá từ cộng đồng...</div>
+        </div>
+      `);
+
+      // Sử dụng jQuery để gán sự kiện click và chuyển hướng
+      $post.on('click', function() {
+        window.location.href = p.url;
+      });
+
+      $container.append($post);
+    });
   }, 800);
 }
 
@@ -927,14 +946,14 @@ type();
 //  DATA DỰ PHÒNG (dùng khi fetch thất bại — chạy file://)
 // ════════════════════════════════════════════════════════════
 const FALLBACK_DESTINATIONS = [
-  { id:1, name:"Hà Giang", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"1.2k", img:"https://storage.googleapis.com/blogvxr-uploads/2024/02/f4011273-ha-noi-di-ha-giang-bao-nhieu-tieng-1486609-1250x715.jpg", tags:["Thiên nhiên","Núi cao"], tagClasses:["tag-nature","tag-highland"], url:"ha-giang.html" },
-  { id:2, name:"Phố cổ Hội An", region:"Miền Trung", regionKey:"mien-trung", rating:4.9, reviews:"3.4k", img:"https://kienviet.net/wp-content/uploads/2020/12/Picture2.png", tags:["Di tích","Ẩm thực"], tagClasses:["tag-heritage","tag-nature"], url:"hoi-an.html" },
-  { id:3, name:"Đà Lạt", region:"Tây Nguyên", regionKey:"tay-nguyen", rating:4.7, reviews:"2.1k", img:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Tat-tan-tat-kinh-nghiem-du-lich-da-lat-checkin-o-dau-an-gi-202206031411593741.jpg", tags:["Cao nguyên","Hoa"], tagClasses:["tag-highland","tag-nature"], url:"da-lat.html" },
-  { id:4, name:"Phú Quốc", region:"Miền Nam", regionKey:"mien-nam", rating:4.8, reviews:"1.8k", img:"https://bcp.cdnchinhphu.vn/334894974524682240/2025/6/23/phu-quoc-17506756503251936667562.jpg", tags:["Biển đảo","Resort"], tagClasses:["tag-beach","tag-heritage"], url:"phu-quoc.html" },
-  { id:5, name:"Sapa", region:"Miền Bắc", regionKey:"mien-bac", rating:4.7, reviews:"2.0k", img:"https://xesaoviet.com.vn/wp-content/uploads/2024/08/nui-ham-rong-acc-1.png", tags:["Thiên nhiên","Văn hóa"], tagClasses:["tag-nature","tag-highland"], url:"sapa-tour.html" },
-  { id:6, name:"Tràng An", region:"Miền Bắc", regionKey:"mien-bac", rating:4.6, reviews:"1.5k", img:"https://ik.imagekit.io/tvlk/blog/2022/11/khu-du-lich-trang-an-2.jpg", tags:["Di sản","Hang động"], tagClasses:["tag-heritage","tag-nature"], url:"trangan-tour.html" },
-  { id:7, name:"Đồng Văn", region:"Miền Bắc", regionKey:"mien-bac", rating:4.8, reviews:"832", img:"https://dntt.mediacdn.vn/197608888129458176/2024/10/7/kinh-nghiem-di-du-lich-dong-van-ha-giang-tu-tuc-an-toan-thu-vi-1644768701-172829453677318018934.jpg", tags:["Núi đá","Văn hóa"], tagClasses:["tag-highland","tag-heritage"], url:"dong-van.html" },
-  { id:8, name:"Mũi Né", region:"Miền Nam", regionKey:"mien-nam", rating:4.5, reviews:"1.1k", img:"https://vcdn1-dulich.vnecdn.net/2022/04/03/MuiNeVNExpress3075891542181990-8691-6492-1648974014.jpg", tags:["Biển","Resort"], tagClasses:["tag-beach","tag-heritage"], url:"muine.html" },
+  { id:1, name:"Hà Giang", region:"Miền Bắc", regionKey:"mien-bac", rating:5, reviews:"1", img:"https://storage.googleapis.com/blogvxr-uploads/2024/02/f4011273-ha-noi-di-ha-giang-bao-nhieu-tieng-1486609-1250x715.jpg", tags:["Thiên nhiên","Núi cao"], tagClasses:["tag-nature","tag-highland"], url:"ha-giang.html" },
+  { id:2, name:"Phố cổ Hội An", region:"Miền Trung", regionKey:"mien-trung", rating:5, reviews:"1", img:"https://kienviet.net/wp-content/uploads/2020/12/Picture2.png", tags:["Di tích","Ẩm thực"], tagClasses:["tag-heritage","tag-nature"], url:"hoi-an.html" },
+  { id:3, name:"Đà Lạt", region:"Tây Nguyên", regionKey:"tay-nguyen", rating:0, reviews:"0", img:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Tat-tan-tat-kinh-nghiem-du-lich-da-lat-checkin-o-dau-an-gi-202206031411593741.jpg", tags:["Cao nguyên","Hoa"], tagClasses:["tag-highland","tag-nature"], url:"da-lat.html" },
+  { id:4, name:"Phú Quốc", region:"Miền Nam", regionKey:"mien-nam", rating:0, reviews:"0", img:"https://bcp.cdnchinhphu.vn/334894974524682240/2025/6/23/phu-quoc-17506756503251936667562.jpg", tags:["Biển đảo","Resort"], tagClasses:["tag-beach","tag-heritage"], url:"phu-quoc.html" },
+  { id:5, name:"Sapa", region:"Miền Bắc", regionKey:"mien-bac", rating:0, reviews:"0", img:"https://xesaoviet.com.vn/wp-content/uploads/2024/08/nui-ham-rong-acc-1.png", tags:["Thiên nhiên","Văn hóa"], tagClasses:["tag-nature","tag-highland"], url:"sapa-tour.html" },
+  { id:6, name:"Tràng An", region:"Miền Bắc", regionKey:"mien-bac", rating:0, reviews:"0", img:"https://ik.imagekit.io/tvlk/blog/2022/11/khu-du-lich-trang-an-2.jpg", tags:["Di sản","Hang động"], tagClasses:["tag-heritage","tag-nature"], url:"trangan-tour.html" },
+  { id:7, name:"Đồng Văn", region:"Miền Bắc", regionKey:"mien-bac", rating:0, reviews:"0", img:"https://dntt.mediacdn.vn/197608888129458176/2024/10/7/kinh-nghiem-di-du-lich-dong-van-ha-giang-tu-tuc-an-toan-thu-vi-1644768701-172829453677318018934.jpg", tags:["Núi đá","Văn hóa"], tagClasses:["tag-highland","tag-heritage"], url:"dong-van.html" },
+  { id:8, name:"Mũi Né", region:"Miền Nam", regionKey:"mien-nam", rating:0, reviews:"0", img:"https://vcdn1-dulich.vnecdn.net/2022/04/03/MuiNeVNExpress3075891542181990-8691-6492-1648974014.jpg", tags:["Biển","Resort"], tagClasses:["tag-beach","tag-heritage"], url:"muine.html" },
 ];
 const FALLBACK_FOODS = [
   { id:1, name:"Bún chả Hà Nội", region:"Miền Bắc · Hà Nội", regionKey:"mien-bac", img:"https://cooponline.vn/tin-tuc/wp-content/uploads/2025/10/hoc-cach-lam-bun-cha-mien-bac-chuan-ha-noi-tai-nha.png", desc:"Món ăn đặc trưng của người Hà Nội với bún tươi, chả nướng thơm lừng và nước chấm chua ngọt đậm đà.", chips:["Câu chuyện & xuất xứ","Công thức nấu","Quán nổi tiếng"], url:"bun-cha.html", featured:true },

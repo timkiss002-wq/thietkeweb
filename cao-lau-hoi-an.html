@@ -117,7 +117,7 @@
   footer{background:var(--ink);color:rgba(255,255,255,0.6);padding:50px 5% 30px;margin-top:50px;}
   footer .logo{color:var(--terracotta-light)!important;font-size:24px;}
   footer .logo span{color:rgba(255,255,255,0.7);}
-  .footer-bottom-line{font-size:13px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;margin-top:30px;}
+ .footer-bottom-line { font-size: 13px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; width: 100%; text-align: center; margin-top: 30px; }
   @media(max-width:900px){.tour-grid{flex-direction:column;}.sidebar{position:static;width:100%;max-width:100%;}.highlight-grid{grid-template-columns:1fr;}.policy-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -151,18 +151,17 @@
 <div class="container">
   <h1 class="tour-title">Cao Lầu Hội An: Huyền Thoại Ẩm Thực Phố Cổ — Chỉ Ngon Nhất Tại Hội An</h1>
   <div class="rating-row">
-    <span>4.9★★★★★</span>
-    <span>(3.6k đánh giá)</span>
+    <span>0★</span>
+    <span>(0 đánh giá)</span>
   </div>
 
   <div class="slider-container">
     <div class="slides" id="slides">
-      <div class="slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwaUqAHhwuR-2EJEh1wM7PpwTBG7B4gL0fxA&s" alt="Cao Lầu Hội An 1"></div>
+      <div class="slide"><img src="https://hotelroyalhoian.vn/wp-content/uploads/2025/05/dac-san-hoi-an-1-12.jpg" alt="Cao Lầu Hội An 1"></div>
       <div class="slide"><img src="https://i-giadinh.vnecdn.net/2023/03/13/Buoc-7-Thanh-pham-1-7-9577-1678700377.jpg" alt="Cao Lầu Hội An 2"></div>
       <div class="slide"><img src="https://danangfantasticity.com/wp-content/uploads/2024/04/tong-hop-cac-mon-an-nhat-dinh-phai-thu-khi-den-da-nang-hoi-an-CAO-LAU-1024x576.jpg" alt="Cao Lầu Hội An 3"></div>
     </div>
     </div>
-  </div>
 
   <div class="tour-grid">
     <div class="tour-content">
@@ -316,8 +315,13 @@
 </div>
 
 <footer>
-  <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
-  <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: flex-start; padding: 0;">
+   <div style="margin-bottom: 20px; width: 100%;">
+     <a href="index.html" class="logo">Du Lịch <span>Địa Phương</span></a>
+     <p style="font-size: 15px; margin-top: 10px; color: rgba(255,255,255,0.8);">Khám phá Việt Nam theo cách của người bản địa.</p>
+   </div>
+   <div class="footer-bottom-line">© 2026 Du Lịch Địa Phương. Made with ♥ in Việt Nam</div>
+ </div>
 </footer>
 
 <script>
